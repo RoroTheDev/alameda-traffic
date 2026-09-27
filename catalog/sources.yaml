@@ -1,0 +1,487 @@
+# Catalog of every data source for the study — scripted or not.
+#
+# access:  api     = server-side filtered queries (ArcGIS REST, Socrata, CKAN, Overpass, Census)
+#          bulk    = whole files downloaded/streamed, then filtered locally
+#          manual  = you download it by hand (login / CAPTCHA / hand collection)
+#          token   = scripted, but needs a free key in .env
+#          request = must be requested from an agency
+# storage: release    = safe to publish as a GitHub Release asset (open license; attribute)
+#          restricted = keep local (data/restricted/); never commit or publish
+#          none       = reference only / nothing stored
+# Facts below were checked on 2026-09-27 unless marked "(unverified)".
+
+sources:
+
+# ---------------------------------------------------------------- crashes
+- id: ccrs
+  name: CCRS — California Crash Reporting System (Crashes, Parties, InjuredWitnessPassengers)
+  publisher: California Highway Patrol, via data.ca.gov
+  url: https://data.ca.gov/dataset/ccrs
+  access: bulk
+  script: python download.py ccrs --years 2016-2026
+  output: data/processed/ccrs/{crashes,parties,injured}_YYYY.parquet
+  storage: release
+  license: Public domain
+  coverage: 2016–2026 statewide (2025 provisional, 2026 partial); Alameda = County Code 1, ~17–20k crashes/yr
+  has: [crash date/time, city, collision type, primary collision factor (vehicle code), lighting, weather,
+        pedestrian action, IsFreeway, primary/secondary road + distance/direction, Latitude/Longitude,
+        killed/injured counts, party role/age/sex/race/sobriety/vehicle/SpeedLimit, injury extent per person,
+        property-damage-only crashes]
+  lacks: [coordinates for ~35% of Alameda injury crashes (Oakland 2024 - 31% have them), severity column on
+          the crash table, segment/intersection IDs, road features, traffic volumes, narratives]
+  gotchas:
+    - The data.ca.gov SQL API copy of 2019 is truncated (Jan 1–Apr 8); the CSV is complete — script uses CSVs.
+    - CSV headers contain stray tab characters (script strips column names; values untouched).
+    - 2017/2019/2021 dates are M/D/YYYY h:mm:ss AM; other years ISO.
+    - Duplicate report versions exist — dedupe on Collision Id keeping the highest Report Version; drop IsDeleted.
+    - Key is "Collision Id" in Crashes but "CollisionId" in Parties/Injured.
+    - Injury codes mix new (SuspectSerious, SuspectMinor, PossibleInjury, Fatal) and legacy (*Inactive) values.
+    - Files are regenerated daily — the pull log records sha256 of every file used.
+
+- id: tims
+  name: TIMS — SafeTREC Transportation Injury Mapping System (geocoded SWITRS)
+  publisher: UC Berkeley SafeTREC
+  url: https://tims.berkeley.edu
+  access: manual
+  script: python download.py tims   # ingests CSVs you put in data/manual/tims/
+  output: data/restricted/tims/*.parquet
+  storage: restricted
+  license: "Attribution required; no use in litigation against state/local agencies; redistribution not addressed"
+  coverage: last 10 years final + provisional 2024+; injury crashes only
+  has: [SafeTREC geocodes POINT_X/POINT_Y (~97% statewide), officer lat/long, crash/party/victim tables]
+  lacks: [property-damage-only crashes]
+  how: >
+    Create a free TIMS account, SWITRS Query & Map -> Alameda County -> years -> download Crashes,
+    Parties, Victims CSVs into data/manual/tims/, then run `python download.py tims`.
+    Ask tims_info@berkeley.edu before publishing raw TIMS extracts.
+
+- id: fars
+  name: FARS — Fatality Analysis Reporting System
+  publisher: NHTSA
+  url: https://static.nhtsa.gov/nhtsa/downloads/FARS/
+  access: bulk
+  script: python download.py fars
+  output: data/processed/fars/{accident,person,vehicle}_YYYY.parquet
+  storage: release
+  license: Public domain (U.S. Government)
+  coverage: 2016–2024 (2024 is an Annual Report File, not final; 2025 not yet posted)
+  has: [every fatal crash with coordinates, persons, vehicles]
+  lacks: [non-fatal crashes]
+  use: independent check on CCRS death counts
+
+- id: epicenter
+  name: CDPH EpiCenter (incl. Crash Medical Outcomes Data)
+  publisher: California Department of Public Health
+  url: https://skylab4.cdph.ca.gov/epicenter/
+  access: manual
+  storage: none
+  license: Public (aggregate tables)
+  has: [county-level traffic-injury deaths, hospitalizations, ED visits; crash-hospital linked outcomes; 2024 added Feb 2026]
+  lacks: [locations]
+  how: Query county tables in the web tool; cite in the limitations section (police under-reporting).
+
+- id: street_story
+  name: Street Story (crowdsourced near misses / hazards)
+  publisher: UC Berkeley SafeTREC
+  url: https://streetstory.berkeley.edu/
+  access: manual
+  storage: restricted
+  license: (unverified)
+  has: [self-reported crashes, near misses, hazards; downloadable tables]
+  lacks: [representativeness — reporters are self-selected]
+  how: Optional. Download Alameda records from the Street Story site; check terms before publishing.
+
+# ---------------------------------------------------------------- roads, volumes, speed
+- id: osm
+  name: OpenStreetMap — roads, traffic control, destinations
+  publisher: OpenStreetMap contributors, via Overpass API
+  url: https://overpass-api.de
+  access: api
+  script: python download.py osm
+  output: data/processed/osm/{highways.osm.bz2, traffic_control.geojson, pois.geojson}
+  storage: release
+  license: ODbL 1.0 — attribute "© OpenStreetMap contributors"; derived databases must be ODbL
+  has: [full road network with class/lanes/maxspeed tags, ~13.9k stop-sign nodes, ~4.3k signal nodes,
+        ~6.7k traffic-calming nodes, crossings, schools/hospitals/parks/bus stops]
+  lacks: [even coverage (stop signs ~absent in Pleasanton, Fremont, Dublin, Newark), install dates,
+          volumes; node counts != intersections]
+  gotchas:
+    - maxspeed on 33% of drivable ways overall; 9% (San Leandro) to 96% (Berkeley) by city.
+    - Snapshot changes daily — the pull log records Overpass's osm_base timestamp.
+
+- id: county_street_centerlines
+  name: Alameda County Street Centerlines
+  publisher: Alameda County (data.acgov.org)
+  url: https://data.acgov.org/
+  access: api
+  script: python download.py county_gis
+  output: data/processed/county_gis/street_centerlines.geojson
+  storage: release
+  license: Alameda County open data terms (not reviewed)
+  has: [85,140 segments, street name parts, left/right address ranges, city/zip L/R, class, travel direction]
+  lacks: [lanes, speed, volume]
+  use: geocode CCRS crashes that lack coordinates (PrimaryRoad x SecondaryRoad, address ranges)
+
+- id: county_cities
+  name: Alameda County city boundaries
+  publisher: Alameda County (data.acgov.org)
+  url: https://data.acgov.org/
+  access: api
+  script: python download.py county_gis
+  storage: release
+  license: Alameda County open data terms (not reviewed)
+
+- id: tiger
+  name: Census TIGER boundaries (county, tracts, block groups, places) — ACS-vintage matched
+  publisher: U.S. Census Bureau (TIGERweb)
+  url: https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb
+  access: api
+  script: python download.py census --only boundaries
+  storage: release
+  license: Public domain
+
+- id: caltrans_aadt
+  name: Caltrans Traffic Volumes (AADT), state highways
+  publisher: Caltrans
+  url: https://gisdata-caltrans.opendata.arcgis.com/datasets/d8833219913c44358f2a9a71bda57f76_0/about
+  access: api
+  script: python download.py caltrans
+  storage: release
+  license: California open data
+  coverage: 2023 count year; 450 points in Alameda
+  lacks: [local streets — mostly freeways]
+
+- id: hpms
+  name: HPMS — Highway Performance Monitoring System (California), 2020/2022/2023/2024
+  publisher: FHWA (geo.dot.gov)
+  url: https://geo.dot.gov/server/rest/services/Hosted/HPMS_FULL_CA_2024/FeatureServer
+  access: api
+  script: python download.py hpms
+  storage: release
+  license: Public domain (U.S. Government)
+  has: [~29k Alameda sections (2024) with AADT, lanes, speed limit, functional class, signal/stop counts;
+        AADT complete for f_system 1–5 in every year]
+  lacks: [real AADT on local streets; speed_limit sparse; no 2021 service]
+  gotchas:
+    - Filtered spatially — the county attribute is unreliable (2023 county_id=1 matches statewide routes).
+    - 2020 has 38,258 duplicate geometries out of 64,375 sections — dedupe.
+    - 2022/2023 local-street AADT is a placeholder (405 / 397 on >90% of sections) — not a count.
+    - Field names change between years.
+  use: the only public arterial traffic-volume source found — exposure for arterial models
+
+- id: alacc_inrix
+  name: AlaCC travel-model link volumes and INRIX speeds (what Alameda CTC's PSN used)
+  publisher: Alameda CTC / INRIX
+  url: https://www.alamedactc.org/
+  access: request
+  storage: restricted
+  license: Agency / commercial
+  how: Email Alameda CTC planning staff; ask for modeled ADT and observed-speed layers for research use.
+
+- id: speed_limit_history
+  name: Posted speed-limit changes (Oakland AB 43 business districts 2023–2025, etc.)
+  publisher: OakDOT and other cities
+  url: https://www.oaklandca.gov/Government/Oakland-Improvement-Projects/Lowering-Speed-Limits-in-Business-Activity-Districts
+  access: request
+  storage: release
+  license: Public records
+  how: Ask OakDOT for streets + effective dates of speed-limit changes; no public inventory exists.
+
+# ---------------------------------------------------------------- countermeasures
+- id: oakland_bikeway_projects
+  name: Oakland Bikeway Projects (with completion year/month)
+  publisher: City of Oakland (Socrata wsr6-nipq)
+  url: https://data.oaklandca.gov/d/wsr6-nipq
+  access: api
+  script: python download.py oakland
+  storage: release
+  license: Public Domain U.S. Government (per portal)
+  has: [570 projects since 1996, YearDone/MonthDone (245 completed 2016–2025), type (lanes/buffered/separated/boulevard/path/sharrows)]
+  lacks: [other cities, cost, exact day; 146 records lack a year]
+  gotchas: [GeoJSON arrives in EPSG:2227 (CA State Plane III, ft) — script reprojects to WGS84]
+
+- id: oakland_bikeway_network
+  name: Oakland Bikeway Network (existing + proposed)
+  publisher: City of Oakland (Socrata 6e52-b8q8)
+  url: https://data.oaklandca.gov/d/6e52-b8q8
+  access: api
+  script: python download.py oakland
+  storage: release
+  license: City of Oakland open data
+  has: [existing/proposed class, YearofCurrentClass]
+  gotchas: [EPSG:2227 coordinates — reprojected]
+
+- id: oakland_slow_streets
+  name: Oakland Slow Streets (2020)
+  publisher: City of Oakland (Socrata vg6t-ire2)
+  url: https://data.oaklandca.gov/d/vg6t-ire2
+  access: api
+  script: python download.py oakland
+  storage: release
+  license: City of Oakland open data
+  use: pandemic-era street closures — control for them in 2020
+
+- id: oakland_signals
+  name: Oakland Traffic Signals (2013)
+  publisher: City of Oakland (Socrata wm75-yhqe)
+  url: https://data.oaklandca.gov/d/wm75-yhqe
+  access: api
+  script: python download.py oakland
+  storage: release
+  license: City of Oakland open data
+  lacks: [coordinates — street names only (620 intersections); 13 years old]
+
+- id: berkeley_signals
+  name: Berkeley Traffic Signals (2018)
+  publisher: City of Berkeley (Socrata nxqb-ng9a)
+  url: https://data.cityofberkeley.info/d/nxqb-ng9a
+  access: api
+  script: python download.py berkeley
+  storage: release
+  license: City of Berkeley open data
+  gotchas: [pole/mount-level records (~873), not one per intersection]
+
+- id: mtc_bike_facilities
+  name: MTC Regional Bike Facilities
+  publisher: MTC
+  url: https://opendata.mtc.ca.gov/
+  access: api
+  script: python download.py county_gis
+  storage: release
+  license: MTC open data
+  lacks: [install dates, names — only objectid/class/length; last edited May 2021]
+
+- id: mapillary
+  name: Mapillary traffic-sign detections (stop / yield / all-way)
+  publisher: Mapillary (Meta)
+  url: https://www.mapillary.com/developer/api-documentation
+  access: token
+  script: python download.py mapillary   # needs MAPILLARY_TOKEN
+  storage: release
+  license: CC BY-SA 4.0
+  lacks: [install dates (detections = seen in imagery), full coverage]
+  how: Create a free token at https://www.mapillary.com/dashboard/developers and put it in .env.
+
+- id: cmf_clearinghouse
+  name: FHWA CMF Clearinghouse (full database)
+  publisher: FHWA
+  url: https://cmfclearinghouse.fhwa.dot.gov/cmf_data.php
+  access: bulk
+  script: python download.py countermeasures
+  storage: release
+  license: Public domain (U.S. Government)
+  has: [10,178 CMF/CRF records x 183 fields — countermeasure, crash type/severity, star quality rating
+        (qualRating), study method, state, road/area context]
+  gotchas: [cmCostRange is filled for <2% of rows and is free text — not usable as a cost table]
+
+- id: caltrans_lrsm
+  name: Caltrans Local Roadway Safety Manual 2026 + HSIP Analyzer manual
+  publisher: Caltrans
+  url: https://dot.ca.gov/programs/local-assistance/fed-and-state-programs/highway-safety-improvement-program
+  access: bulk
+  script: python download.py countermeasures
+  storage: release
+  license: Public (state publication)
+  lacks: [countermeasure unit costs]
+
+- id: countermeasure_costs
+  name: Planning-level countermeasure unit costs
+  publisher: local safety plans (LRSPs / Vision Zero plans)
+  url: ""
+  access: manual
+  storage: release
+  how: Collect unit costs per countermeasure from published local safety plans; cite each.
+
+# ---------------------------------------------------------------- destinations
+- id: cde_school_sites
+  name: CDE California Public Schools — school sites by year (2021-22 to 2025-26)
+  publisher: California Department of Education (gis.data.ca.gov)
+  url: https://gis.data.ca.gov/datasets/CDEGIS::california-public-schools-2025-26
+  access: api
+  script: python download.py schools
+  storage: release
+  license: California open data
+  has: [coordinates, enrollment by grade TK–12, level, charter, Title I, FRPM %]
+  lacks: [schools closed before that year, private schools, pre-2021 years, bell times, calendars]
+
+- id: cde_directory
+  name: CDE Public Schools and Districts directory (pubschls.txt; includes closed schools)
+  publisher: California Department of Education
+  url: https://www.cde.ca.gov/ds/si/ds/pubschls.asp
+  access: manual
+  script: python download.py schools   # ingests data/manual/pubschls.txt
+  storage: release
+  license: California open data
+  how: Download the tab-delimited "Public Schools and Districts" file in a browser (the site has a
+    CAPTCHA, so it can't be scripted) and save it as data/manual/pubschls.txt.
+
+- id: nces_private_schools
+  name: NCES EDGE private school geocodes (2019-20, 2021-22, 2023-24)
+  publisher: NCES
+  url: https://nces.ed.gov/programs/edge/geographic/schoollocations
+  access: api
+  script: python download.py schools
+  storage: release
+  license: Public domain (U.S. Government)
+  coverage: 128 Alameda private schools in 2023-24
+
+- id: school_calendars
+  name: School calendars (first/last day of school, by district and year)
+  publisher: school districts
+  url: ""
+  access: manual
+  script: python download.py schools   # copies data/manual/school_calendars.csv
+  storage: release
+  how: Fill data/manual/school_calendars.csv (template in data/manual/templates/) from district calendars;
+    use the Wayback Machine for past years. Needed for the school-year vs summer comparison.
+
+- id: hcai_facilities
+  name: Licensed and Certified Healthcare Facility Listing
+  publisher: CDPH / HCAI (data.chhs.ca.gov)
+  url: https://data.chhs.ca.gov/dataset/healthcare-facility-locations
+  access: api
+  script: python download.py health
+  storage: release
+  license: CHHS open data
+  has: [17 general acute care hospitals, 72 skilled nursing facilities, 175 primary care clinics, trauma flags
+        (Highland L-I, Sutter Eden L-II, UCSF Benioff Children's Oakland L-I pediatric), coordinates]
+  gotchas: [contains administrator names/emails/phones — script drops them]
+
+- id: gtfs
+  name: Transit GTFS — BART (open), AC Transit (token), 511 regional (token)
+  publisher: BART, AC Transit, MTC 511
+  url: https://511.org/open-data/transit
+  access: token
+  script: python download.py transit
+  storage: restricted
+  license: per-operator terms of use
+  how: For AC Transit register at https://api.actransit.org/transit/Help (ACTRANSIT_TOKEN); for all
+    operators get a 511 key at https://511.org/open-data/token (API_511_KEY). Historical feeds need an archive.
+
+- id: affordable_housing
+  name: Affordable housing locations (used by Alameda CTC's PSN)
+  publisher: California Housing Partnership; HCD
+  url: ""
+  access: request
+  storage: restricted
+  license: (unverified)
+  how: (unverified) Locate the CHPC subsidized-housing and HCD public-housing layers or ask Alameda CTC.
+
+# ---------------------------------------------------------------- population, equity, exposure
+- id: acs
+  name: American Community Survey 5-year (2020–2024) — B01001, B03002, B08301, B08201, B19013, B17001
+  publisher: U.S. Census Bureau
+  url: https://api.census.gov/data/2024/acs/acs5
+  access: api
+  script: python download.py census --only acs
+  storage: release
+  license: Public domain
+  gotchas: [the Census API now requires a key — without CENSUS_API_KEY the script streams the table-based
+            summary files (~570 MB) instead; same output]
+
+- id: lodes
+  name: LEHD LODES8 workplace jobs (WAC), 2016–2023
+  publisher: U.S. Census Bureau
+  url: https://lehd.ces.census.gov/data/
+  access: bulk
+  script: python download.py census --only lodes
+  storage: release
+  license: Public domain
+
+- id: epc
+  name: MTC/ABAG Equity Priority Communities — Plan Bay Area 2050 and 2050+
+  publisher: MTC / ABAG
+  url: https://bayareametro.github.io/Spatial-Analysis-Mapping-Projects/Project-Documentation/Equity-Priority-Communities/
+  access: bulk
+  script: python download.py equity
+  storage: release
+  license: MTC open data
+
+- id: calenviroscreen5
+  name: CalEnviroScreen 5.0 (final, July 2026)
+  publisher: OEHHA (data.ca.gov)
+  url: https://data.ca.gov/dataset/calenviroscreen-5-0
+  access: bulk
+  script: python download.py equity
+  storage: release
+  license: License not specified on portal
+
+- id: oakland_counts
+  name: Oakland annual multi-modal counts (2011–2021)
+  publisher: City of Oakland (Socrata amtg-eh64)
+  url: https://data.oaklandca.gov/d/amtg-eh64
+  access: bulk
+  script: python download.py oakland
+  storage: release
+  license: City of Oakland open data
+  has: [~387 Excel count sheets (PM peak / Saturday) at ~20–65 locations/yr]
+  lacks: [consistent format, anything after 2021, other cities]
+
+- id: caltrans_at_counts
+  name: Caltrans Active Transportation Count Dataset (hourly ped/bike, 2023–2025)
+  publisher: Caltrans (data.ca.gov)
+  url: https://data.ca.gov/dataset/at-count-dataset
+  access: bulk
+  script: python download.py caltrans
+  storage: release
+  license: California open data
+  lacks: [local streets — state highways only; ~a dozen sites near Alameda, some only Jan–Mar 2025]
+
+- id: alamedactc_counts
+  name: Alameda CTC bicycle/pedestrian count program (~150 sites, biennial)
+  publisher: Alameda CTC
+  url: https://www.alamedactc.org/programs-projects/bicycle-and-pedestrian/bicycle-pedestrian-count-program/
+  access: request
+  storage: restricted
+  how: No public download found — request the count database from Alameda CTC.
+
+- id: commercial_exposure
+  name: Commercial exposure data (INRIX, StreetLight, Replica)
+  publisher: vendors
+  url: ""
+  access: request
+  storage: restricted
+  how: Not public. Only via an agency partner or academic license.
+
+# ---------------------------------------------------------------- benchmarks
+- id: alamedactc_hin_psn
+  name: Alameda CTC High-Injury Network 2019/2024 + Concept Proactive Safety Network 2024 (+ SR2S schools, draft bikeways)
+  publisher: Alameda CTC (layers hosted on Fehr & Peers' dev server)
+  url: https://www.alamedactc.org/wp-content/uploads/2024/09/HIN_PSN_Report.pdf
+  access: api
+  script: python download.py alamedactc
+  output: data/restricted/alamedactc/
+  storage: restricted
+  license: none — not an official open-data release
+  has: [corridor geometry + names for HIN 2019, HIN 2024 (TIMS 2018–2022), PSN 2024 (261 mi, ~6% of network)]
+  lacks: [scores/factor values]
+  gotchas:
+    - Read-only use only; the server advertises edit capabilities — never call anything but /query.
+    - Request an official copy + permission from Alameda CTC before publishing anything derived.
+  how: Email Alameda CTC for official HIN/PSN GIS files and permission.
+
+- id: oakland_hin_2024
+  name: Oakland 2024 High Injury Network tables (segments, intersections)
+  publisher: OakDOT
+  url: https://www.oaklandca.gov/Public-Safety-Streets/Traffic-Safety/2024-High-Injury-Network-HIN
+  access: bulk
+  script: python download.py oakland
+  storage: release
+  license: City of Oakland public document
+  coverage: 2017–2021 crash data
+
+- id: bayviz
+  name: MTC BAYVIZ Vision Zero dashboards
+  publisher: MTC
+  url: https://mtc.ca.gov/tools-resources/data-tools/bay-area-vision-zero-bayviz-system
+  access: manual
+  storage: none
+  how: Reference only — dashboards, no bulk download found.
+
+- id: oakdot_inventories
+  name: OakDOT signal and stop-sign inventories
+  publisher: OakDOT
+  url: https://www.oaklandca.gov/
+  access: request
+  storage: release
+  how: Ask OakDOT for current signal and stop-sign inventories with install dates if available.

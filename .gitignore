@@ -1,0 +1,31 @@
+# Data never goes into git history. Processed data is published as GitHub
+# Release assets; restricted data stays local. See README "Storage policy".
+data/raw/
+data/processed/
+data/restricted/
+data/manual/*
+!data/manual/README.md
+!data/manual/templates/
+
+# Secrets (API tokens)
+.env
+
+# Pull-log lock and run logs (transient)
+catalog/pull_log.lock
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Release bundles built by publish_release.py
+dist/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,67 @@
+# alameda-traffic
+
+Traffic crashes, deaths and injuries in Alameda County, CA — where they
+concentrate, how risk changes near schools, hospitals and other vulnerable
+destinations, what countermeasures (bike lanes, signals, stop signs, speed
+limits) are associated with, and how to allocate a safety budget efficiently.
+
+This repository currently holds the **data acquisition layer**: one script per
+source, a catalog of every source (including the ones that can't be
+scripted), and a provenance log of every pull.
+
+- [`catalog/sources.yaml`](catalog/sources.yaml) — every source: access method, license, what it has/lacks, gotchas
+- [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md) — audit findings that shape the study
+- [`catalog/pull_log.jsonl`](catalog/pull_log.jsonl) — when each file was pulled, from where, with SHA-256
+
+## Setup
+
+```bash
+python -m venv .venv            # or a venv outside OneDrive/Dropbox
+.venv/Scripts/activate          # Windows;  source .venv/bin/activate on macOS/Linux
+pip install -r requirements.txt
+cp .env.example .env            # optional: API keys, ALAMEDA_DATA_DIR
+```
+
+Python 3.12 recommended (geopandas/osmnx wheels).
+
+## Downloading
+
+```bash
+python download.py list                  # all 42 catalogued sources
+python download.py manual                # steps only a human can do (keys, CAPTCHA, requests)
+python download.py all                   # every scriptable source (~6 GB streamed, ~0.6 GB kept; ~1 h)
+python download.py ccrs --years 2020-2025
+python download.py <source> --help       # details for one source
+```
+
+Scripted sources: `census`, `county_gis`, `osm`, `schools`, `health`, `oakland`,
+`berkeley`, `equity`, `caltrans`, `hpms`, `countermeasures`, `fars`, `transit`,
+`alamedactc`, `ccrs`, plus `mapillary` (token, optional) and `tims` (ingests a
+manual download).
+
+**APIs vs bulk files.** Where a server can filter to Alameda for us
+(ArcGIS REST, Socrata, CKAN, Overpass, Census API) the scripts query it. Where
+the full file is the only complete copy (CCRS, FARS, LODES, ACS without a key,
+Caltrans counts) the scripts *stream* the statewide/national file and keep only
+Alameda rows, so multi-GB files never sit on disk unless you pass `--keep-raw`.
+
+## Storage policy
+
+| What | Where |
+|---|---|
+| Code, catalog, pull log, docs | git |
+| Downloaded data (`data/raw`, `data/processed`) | git-ignored; `data/processed` is published as **GitHub Release** assets via `python publish_release.py` |
+| License-restricted data (`data/restricted`: TIMS, Alameda CTC HIN/PSN layers, GTFS) | local only — never committed or published |
+| Manual drops (`data/manual`) | git-ignored except templates |
+
+GitHub blocks files >100 MB in git; release assets can be up to 2 GiB each.
+Because sources change (CCRS is regenerated daily; OSM constantly), cite the
+release tag + `pull_log.jsonl` for any result.
+
+## Attribution
+
+- Map data © OpenStreetMap contributors, ODbL 1.0 (derived OSM data is published under ODbL).
+- Mapillary detections: CC BY-SA 4.0.
+- TIMS: "Transportation Injury Mapping System (TIMS), Safe Transportation Research and Education Center, University of California, Berkeley." (not redistributed here)
+- Crash data: California Highway Patrol (CCRS); NHTSA (FARS).
+- Other sources and their terms: `catalog/sources.yaml`.
