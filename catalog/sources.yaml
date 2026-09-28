@@ -43,17 +43,25 @@ sources:
   publisher: UC Berkeley SafeTREC
   url: https://tims.berkeley.edu
   access: manual
-  script: python download.py tims   # ingests CSVs you put in data/manual/tims/
-  output: data/restricted/tims/*.parquet
-  storage: restricted
-  license: "Attribution required; no use in litigation against state/local agencies; redistribution not addressed"
+  script: python download.py tims --extract-date YYYY-MM-DD   # ingests CSVs you put in data/manual/tims/
+  output: data/processed/tims/*.parquet
+  storage: release
+  license: >
+    Publishing permitted — confirmed by SafeTREC (SangHyouk Oum, TIMS Support, tims_info@berkeley.edu),
+    email 2026-09-28, conditional on citation. Required citation: "California Highway Patrol, Statewide
+    Integrated Traffic Records System (SWITRS), accessed via the Transportation Injury Mapping System
+    (TIMS), UC Berkeley Safe Transportation Research and Education Center, 2026."
   coverage: last 10 years final + provisional 2024+; injury crashes only
   has: [SafeTREC geocodes POINT_X/POINT_Y (~97% statewide), officer lat/long, crash/party/victim tables]
   lacks: [property-damage-only crashes]
+  gotchas:
+    - TIMS refreshes its CHP extract quarterly; recent years are provisional until CHP finalizes its
+      annual report, so crash counts can change between pulls. Record the "data current as of" date
+      shown on the TIMS query page with --extract-date so results are pinned to the exact snapshot.
   how: >
     Create a free TIMS account, SWITRS Query & Map -> Alameda County -> years -> download Crashes,
-    Parties, Victims CSVs into data/manual/tims/, then run `python download.py tims`.
-    Ask tims_info@berkeley.edu before publishing raw TIMS extracts.
+    Parties, Victims CSVs into data/manual/tims/, note the extract date shown on the page, then run
+    `python download.py tims --extract-date YYYY-MM-DD`.
 
 - id: fars
   name: FARS — Fatality Analysis Reporting System

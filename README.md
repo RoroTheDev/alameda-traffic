@@ -37,7 +37,7 @@ python download.py <source> --help       # details for one source
 Scripted sources: `census`, `county_gis`, `osm`, `schools`, `health`, `oakland`,
 `berkeley`, `equity`, `caltrans`, `hpms`, `countermeasures`, `fars`, `transit`,
 `alamedactc`, `ccrs`, plus `mapillary` (token, optional) and `tims` (ingests a
-manual download).
+manual download — publishing permitted with citation, see Attribution below).
 
 **APIs vs bulk files.** Where a server can filter to Alameda for us
 (ArcGIS REST, Socrata, CKAN, Overpass, Census API) the scripts query it. Where
@@ -51,7 +51,7 @@ Alameda rows, so multi-GB files never sit on disk unless you pass `--keep-raw`.
 |---|---|
 | Code, catalog, pull log, docs | git |
 | Downloaded data (`data/raw`, `data/processed`) | git-ignored; `data/processed` is published as **GitHub Release** assets via `python publish_release.py` |
-| License-restricted data (`data/restricted`: TIMS, Alameda CTC HIN/PSN layers, GTFS) | local only — never committed or published |
+| License-restricted data (`data/restricted`: Alameda CTC HIN/PSN layers, GTFS) | local only — never committed or published |
 | Manual drops (`data/manual`) | git-ignored except templates |
 
 GitHub blocks files >100 MB in git; release assets can be up to 2 GiB each.
@@ -62,6 +62,6 @@ release tag + `pull_log.jsonl` for any result.
 
 - Map data © OpenStreetMap contributors, ODbL 1.0 (derived OSM data is published under ODbL).
 - Mapillary detections: CC BY-SA 4.0.
-- TIMS: "Transportation Injury Mapping System (TIMS), Safe Transportation Research and Education Center, University of California, Berkeley." (not redistributed here)
+- TIMS/SWITRS: "California Highway Patrol, Statewide Integrated Traffic Records System (SWITRS), accessed via the Transportation Injury Mapping System (TIMS), UC Berkeley Safe Transportation Research and Education Center, 2026." Publishing permission confirmed by SafeTREC (tims_info@berkeley.edu), email 2026-09-28.
 - Crash data: California Highway Patrol (CCRS); NHTSA (FARS).
 - Other sources and their terms: `catalog/sources.yaml`.
