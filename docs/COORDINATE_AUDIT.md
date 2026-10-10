@@ -66,9 +66,9 @@ Fremont PD, and ~2,100 CHP crashes (freeway crashes that were never attempted, p
 ## 3. Caveats
 
 - **Validation is on other cities.** Oakland PD has only 12 crashes with officer
-  coordinates, so its geocoding accuracy is *extrapolated* from Berkeley, Hayward,
-  Livermore, Alameda and others. Oakland's grid (numbered avenues vs streets sharing a
-  number) may differ. Treat Oakland accuracy as unverified.
+  coordinates, so its geocoding accuracy against officer points is *extrapolated* from
+  Berkeley, Hayward, Livermore, Alameda and others. Section 4 adds a cross-check against
+  SafeTREC's geocode for Oakland (median 5.6 m), which is consistency, not proof.
 - **Officer coordinates are a proxy, not ground truth.** They come from the same reporting
   chain being audited; some departments may geocode to the intersection themselves.
 - **"ok" means unique, not correct.** A confidently wrong street match counts as ok. The
@@ -76,16 +76,44 @@ Fremont PD, and ~2,100 CHP crashes (freeway crashes that were never attempted, p
 - **Offsets not applied.** Moving the point by the reported `SecondaryDistance`/direction
   made agreement *worse* (within 50 m: 55% vs 61% for the bare intersection, same crashes;
   `python -m audit.checks`). If officers already place points at the intersection this would
-  flatter the no-offset version, so this is unresolved; TIMS `POINT_X/POINT_Y` can arbitrate.
+  flatter the no-offset version, so this is unresolved; TIMS did not settle it (section 4).
 - **Resolution.** Good for segment-level work (quarter-mile HIN segments). Not for
   assigning a crash to a specific signal or stop sign.
 - **Freeways** (`IsFreeway = True`) and route names are not geocoded.
 - Year range excludes partial 2026. 2025 is provisional.
 
-## 4. Still to do (needs the TIMS files)
+## 4. Comparison with TIMS (SafeTREC)
 
-`audit/compare_tims.py` is written but **has never been run**; its join key (CCRS `Report
-Number` ↔ TIMS `CASE_ID`) is an assumption. It will report: (A) how many CCRS crashes
-are found in TIMS, (B) whether CCRS and TIMS officer coordinates agree, (C) TIMS
-`POINT_X/POINT_Y` vs officer coordinates and vs our geocode. TIMS comes from the same CHP
-data, so it checks conversion fidelity and SafeTREC's geocoder, not absolute truth.
+Run: `python download.py tims` then `python -m audit.compare_tims`. TIMS file: 73,565
+Alameda crashes, 2016–2025 (all severities except property-damage-only), downloaded
+2026-10-09; the TIMS "data current as of" date was not recorded. Tables:
+`audit/results/tims_*.csv`.
+
+**Linking CCRS to TIMS.** My first guess (CCRS `Report Number` = TIMS `CASE_ID`) matched
+nothing. What works: for CHP reports `CASE_ID` = "9" (or "8") + the 7-digit zero-padded CCRS
+`Collision Id` (99.4% of CHP injury crashes, identical dates). City PD reports use a different
+ID, so they are linked on agency code + date + time + first 8 letters of the primary road,
+accepted only if unique. Checked on the CHP crashes, where the answer is known, that key
+is available for 89% and picks the right row 100% of the time. Overall 99.4% of CHP and 92.6%
+of city-PD injury crashes link; 2,860 of TIMS's 73,565 crashes have no CCRS injury match.
+
+| Question | Result |
+|---|---|
+| Did the CCRS conversion change coordinates? | **No.** On 40,477 crashes with officer coordinates in both, 100% are identical within 1 m (median 0.3 m). |
+| Does TIMS have locations CCRS lacks? | **Yes.** City-PD crashes: TIMS `POINT_X/Y` present for 98.8%, CCRS valid for 26%. |
+| SafeTREC geocode vs officer coords | CHP: 93% within 50 m. City PD: 67% within 50 m, median 22 m, 92% within 250 m. |
+| **Our geocode vs SafeTREC's** (23,151 crashes with no officer coords) | median 8 m; 85% within 50 m, 93% within 100 m, 98% within 250 m |
+| ...Oakland PD only (13,690) | median 5.6 m; 92% within 50 m, 97% within 100 m, 99% within 250 m |
+| Where CCRS coordinates are outside the county, is TIMS's point inside it? | Fremont PD 99% (1,418 crashes), CHP Oakland 94% (1,194), CHP 9390 92%, CHP 9375 99% |
+
+What this means:
+- Our Oakland geocodes agree closely with an independent method, which supports the
+  extrapolation caveat in section 3 for Oakland. SafeTREC's geocode covers essentially every
+  crash, so for injury crashes it is a better fill than ours.
+- SafeTREC's geocode also repairs both bad-coordinate problems from section 1.
+- **Limits:** the two geocodes agree more with each other (85% within 50 m) than either does
+  with PD officer coordinates (67–69%). Both are probably intersection-based and share the
+  same street data, so agreement shows consistency, not correctness. Which is closer to
+  where the crash happened (officer point vs geocoded intersection) is not settled.
+- TIMS has no property-damage-only crashes, so it cannot replace CCRS for those.
+- TIMS recent years are provisional; counts can change at the next quarterly extract.
