@@ -56,7 +56,7 @@ def official():
         g = g.to_crs(4326)
         dest = out_dir(RESTRICTED, NAME) / f"{out}.geojson"
         g.to_file(dest, driver="GeoJSON")
-        log_pull(NAME, f"{out} (official, from Alameda CTC)", url="email from smccarthy@alamedactc.org, 2026-10-02",
+        log_pull(NAME, f"{out} (official, from Alameda CTC)", url="email from Alameda CTC planning staff, 2026-10-02",
                  out_path=dest, sha256=sha256_file(z), rows_out=len(g), source_crs=src_crs,
                  license="none stated (restricted); received in reply to a research data request")
 
