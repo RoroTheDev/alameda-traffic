@@ -453,20 +453,27 @@ sources:
 
 # ---------------------------------------------------------------- benchmarks
 - id: alamedactc_hin_psn
-  name: Alameda CTC High-Injury Network 2019/2024 + Concept Proactive Safety Network 2024 (+ SR2S schools, draft bikeways)
-  publisher: Alameda CTC (layers hosted on Fehr & Peers' dev server)
+  name: Alameda CTC High-Injury Network 2024 + Concept Proactive Safety Network 2024 (official shapefiles) + 2019 HIN, draft bikeways, SR2S schools (dev server)
+  publisher: Alameda CTC (official files sent by Shannon McCarthy, 2026-10-02; other layers on Fehr & Peers' dev server)
   url: https://www.alamedactc.org/wp-content/uploads/2024/09/HIN_PSN_Report.pdf
-  access: api
-  script: python download.py alamedactc
+  access: manual
+  script: python download.py alamedactc   # ingests data/restricted/alamedactc_official/*.zip, then pulls the dev-server layers
   output: data/restricted/alamedactc/
   storage: restricted
-  license: none — not an official open-data release
-  has: [corridor geometry + names for HIN 2019, HIN 2024 (TIMS 2018–2022), PSN 2024 (261 mi, ~6% of network)]
-  lacks: [scores/factor values]
+  license: none stated; received in reply to a research data request. No permission to redistribute, so summary statistics only.
+  has: [HIN 2024: 290 lines, 334 mi (TIMS 2018-2022); Concept PSN 2024: 194 lines, 260.5 mi (~6% of network);
+        street-name field only]
+  lacks: [scores / factor values — the files carry geometry and a mostly-filled street name only]
   gotchas:
-    - Read-only use only; the server advertises edit capabilities — never call anything but /query.
-    - Request an official copy + permission from Alameda CTC before publishing anything derived.
-  how: Email Alameda CTC for official HIN/PSN GIS files and permission.
+    - The two official zips are SharePoint links that need a signed-in browser; save them to data/restricted/alamedactc_official/.
+    - They match the unofficial dev-server layers to within 1 m (checked 2026-10-25), so earlier work is unaffected.
+    - HIN 2019, draft bikeways and SR2S schools still come from the dev server (unofficial; the server advertises edit
+      capabilities, so only /query is ever called).
+    - Official HIN is in EPSG:6420 (CA State Plane III, US ft, NAD83 2011); PSN in EPSG:2227. Both reprojected to WGS84.
+  how: >
+    Open Shannon McCarthy's 2026-10-02 email in a browser, download Final_AT_HIN_1822.zip and
+    Concept_PSN_092724.zip into data/restricted/alamedactc_official/, then run `python download.py alamedactc`.
+    Ask Alameda CTC before publishing anything beyond summary statistics.
 
 - id: oakland_hin_2024
   name: Oakland 2024 High Injury Network tables (segments, intersections)
