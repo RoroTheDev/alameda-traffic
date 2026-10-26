@@ -60,6 +60,12 @@ crashes (2016-2025) on a TIMS base, with CCRS fields linked in, three coordinate
 side (SafeTREC, our geocode, officer), and a freeway/surface flag. Surface streets: 43,365 crashes,
 3,406 killed-or-seriously-injured.
 
+## Segments
+
+`python -m analysis.network` then `python -m analysis.segments` build 32,462 quarter-mile street
+segments with traffic volume, lanes, nearby schools/hospitals, equity layers and Oakland bike lanes,
+and a segment x year crash panel. See [`docs/SEGMENTS.md`](docs/SEGMENTS.md) for coverage and limits.
+
 ## Storage policy
 
 | What | Where |
