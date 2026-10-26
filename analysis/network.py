@@ -19,9 +19,11 @@ usable countywide.
 from __future__ import annotations
 
 import logging
+import pickle
 import re
 
 import geopandas as gpd
+import networkx as nx
 import numpy as np
 import osmnx as ox
 import pandas as pd
@@ -54,9 +56,21 @@ def _mph(v) -> float:
 
 
 def build_network() -> tuple[gpd.GeoDataFrame, gpd.GeoDataFrame]:
-    log.info("loading OSM graph (takes a few minutes)")
-    G = ox.graph_from_xml(PROCESSED / "osm" / "highways.osm.bz2", simplify=True, retain_all=True)
-    G = ox.convert.to_undirected(G)
+    cache = out_dir(PROCESSED, "analysis") / "_osm_graph.pkl"
+    src = PROCESSED / "osm" / "highways.osm.bz2"
+    if cache.exists() and cache.stat().st_mtime > src.stat().st_mtime:
+        log.info("using cached graph %s", cache.name)
+        with open(cache, "rb") as fh:
+            G = pickle.load(fh)
+    else:
+        log.info("loading OSM graph (takes a few minutes)")
+        G = ox.graph_from_xml(src, simplify=True, retain_all=True)
+        # graph_from_xml does not add street_count (graph_from_place does); count on the directed graph
+        counts = ox.stats.count_streets_per_node(G)
+        G = ox.convert.to_undirected(G)
+        nx.set_node_attributes(G, counts, "street_count")
+        with open(cache, "wb") as fh:
+            pickle.dump(G, fh)
     nodes, edges = ox.graph_to_gdfs(G)
     edges = edges.reset_index()
     edges["highway"] = edges["highway"].map(_first)
@@ -72,6 +86,10 @@ def build_network() -> tuple[gpd.GeoDataFrame, gpd.GeoDataFrame]:
     used = set(edges.u) | set(edges.v)
     nodes = nodes[nodes.index.isin(used)].copy()
     nodes["node_id"] = nodes.index
+    # street_count from the graph counted footpaths and service roads too; recount on the
+    # drivable edges we kept (self-loops count twice), so "intersection" means 3+ drivable streets.
+    deg = pd.concat([edges.u, edges.v]).value_counts()
+    nodes["street_count"] = nodes["node_id"].map(deg).fillna(0).astype(int)
     nodes = nodes[["node_id", "street_count", "geometry"]].reset_index(drop=True).to_crs(PROJ)
 
     ctrl = gpd.read_file(PROCESSED / "osm" / "traffic_control.geojson").to_crs(PROJ)
@@ -124,15 +142,26 @@ def main():
           f"{m.edge_id.notna().mean():.3f}; within 30 m {(m.snap_m <= 30).mean():.3f}; within 50 m {(m.snap_m <= 50).mean():.3f}")
     print("snap distance by coord source (median m):", m.groupby("coord_source").snap_m.median().round(1).to_dict())
     print(f"at an intersection node (<=30 m): {m.at_node.mean():.3f}; TIMS says intersection: {m.intersection.mean():.3f}")
+    def concentration(ksi_crashes, edge_set, label):
+        per = ksi_crashes.groupby("edge_id").size().reindex(edge_set.edge_id, fill_value=0).values
+        order = np.argsort(-per, kind="stable")
+        length = edge_set.length_m.values[order]
+        cum_k, cum_l = np.cumsum(per[order]) / per.sum(), np.cumsum(length) / length.sum()
+        out = ", ".join(f"{s:.0%} of KSI on the worst {cum_l[int(np.searchsorted(cum_k, s))]:.1%} of length" for s in (0.5, 0.6, 0.8))
+        print(f"  {label}: {out}  [{int(per.sum())} KSI crashes, {int((per > 0).sum())} edges with one, {length.sum() / 1609.344:,.0f} mi]")
+
     k = m[m.ksi & m.edge_id.notna()]
-    per = k.groupby("edge_id").size().reindex(edges.edge_id, fill_value=0).values
-    order = np.argsort(-per)
-    length = edges.length_m.values[order]
-    cum_k = np.cumsum(per[order]) / per.sum()
-    cum_l = np.cumsum(length) / length.sum()
-    for share in (0.5, 0.6, 0.8):
-        i = int(np.searchsorted(cum_k, share))
-        print(f"  {share:.0%} of surface KSI fall on the worst {cum_l[i]:.1%} of drivable road length")
+    print(f"\nintersections now (3+ drivable streets): {int((nodes.street_count >= 3).sum()):,}")
+    print("KSI concentration on surface streets (OSM edges = blocks between intersections):")
+    concentration(k, edges, "Alameda County, 2016-2025")
+    # NOT comparable to Oakland's published HIN claim (8% of streets carry 60% of severe+fatal crashes): the HIN uses
+    # smoothed corridors and a different severity weighting, while single OSM blocks are so sparse in KSI that the
+    # worst few hundred blocks hold most crashes. Printed for transparency only.
+    places = gpd.read_file(PROCESSED / "census" / "tiger_acs2024_places_incorporated.geojson").to_crs(PROJ)
+    oak = places[places["BASENAME"] == "Oakland"].geometry.union_all()
+    e_oak = edges[edges.geometry.centroid.within(oak)]
+    k_oak = k[k.edge_id.isin(e_oak.edge_id) & k.year.between(2017, 2021)]
+    concentration(k_oak, e_oak, "Oakland only, 2017-2021")
 
 
 if __name__ == "__main__":
