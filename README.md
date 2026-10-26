@@ -66,6 +66,11 @@ side (SafeTREC, our geocode, officer), and a freeway/surface flag. Surface stree
 segments with traffic volume, lanes, nearby schools/hospitals, equity layers and Oakland bike lanes,
 and a segment x year crash panel. See [`docs/SEGMENTS.md`](docs/SEGMENTS.md) for coverage and limits.
 
+## Testing Alameda CTC's networks
+
+`python -m analysis.network_test` measures how much 2023-2025 serious-crash risk the HIN and PSN capture
+against same-length baselines. Summary in [`docs/NETWORK_TEST.md`](docs/NETWORK_TEST.md).
+
 ## Storage policy
 
 | What | Where |

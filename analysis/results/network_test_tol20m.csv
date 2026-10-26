@@ -1,0 +1,25 @@
+network,outcome,period,crashes,network_mi,length_share,captured,lift,history_baseline,volume_baseline,net_minus_history,diff_ci_low,diff_ci_high
+HIN 2024,ped+bike KSI,2023-2025 (out of sample),479,513,0.1078,0.526,4.9,0.589,0.296,-0.063,-0.109,-0.016
+HIN 2024,ped+bike KSI,2018-2022 (in sample for HIN),694,513,0.1078,0.64,5.9,,0.326,,,
+HIN 2024,all-mode KSI,2023-2025 (out of sample),1066,513,0.1078,0.48,4.5,0.579,0.303,-0.098,-0.136,-0.062
+HIN 2024,all-mode KSI,2018-2022 (in sample for HIN),1687,513,0.1078,0.509,4.7,,0.298,,,
+HIN 2024,fatal,2023-2025 (out of sample),161,513,0.1078,0.46,4.3,0.398,0.317,0.062,-0.026,0.142
+HIN 2024,fatal,2018-2022 (in sample for HIN),240,513,0.1078,0.483,4.5,,0.3,,,
+PSN 2024,ped+bike KSI,2023-2025 (out of sample),479,455,0.0956,0.359,3.8,0.564,0.259,-0.205,-0.26,-0.148
+PSN 2024,ped+bike KSI,2018-2022 (in sample for HIN),694,455,0.0956,0.373,3.9,,0.267,,,
+PSN 2024,all-mode KSI,2023-2025 (out of sample),1066,455,0.0956,0.364,3.8,0.548,0.258,-0.184,-0.225,-0.146
+PSN 2024,all-mode KSI,2018-2022 (in sample for HIN),1687,455,0.0956,0.358,3.7,,0.245,,,
+PSN 2024,fatal,2023-2025 (out of sample),161,455,0.0956,0.416,4.4,0.385,0.261,0.031,-0.053,0.122
+PSN 2024,fatal,2018-2022 (in sample for HIN),240,455,0.0956,0.396,4.1,,0.237,,,
+HIN or PSN,ped+bike KSI,2023-2025 (out of sample),479,673,0.1414,0.572,4.0,0.641,0.434,-0.069,-0.123,-0.017
+HIN or PSN,ped+bike KSI,2018-2022 (in sample for HIN),694,673,0.1414,0.663,4.7,,0.438,,,
+HIN or PSN,all-mode KSI,2023-2025 (out of sample),1066,673,0.1414,0.546,3.9,0.649,0.435,-0.103,-0.139,-0.07
+HIN or PSN,all-mode KSI,2018-2022 (in sample for HIN),1687,673,0.1414,0.563,4.0,,0.421,,,
+HIN or PSN,fatal,2023-2025 (out of sample),161,673,0.1414,0.547,3.9,0.497,0.447,0.05,-0.03,0.126
+HIN or PSN,fatal,2018-2022 (in sample for HIN),240,673,0.1414,0.55,3.9,,0.45,,,
+HIN and PSN,ped+bike KSI,2023-2025 (out of sample),479,295,0.0619,0.313,5.1,0.463,0.182,-0.15,-0.211,-0.096
+HIN and PSN,ped+bike KSI,2018-2022 (in sample for HIN),694,295,0.0619,0.35,5.7,,0.186,,,
+HIN and PSN,all-mode KSI,2023-2025 (out of sample),1066,295,0.0619,0.298,4.8,0.448,0.172,-0.15,-0.188,-0.112
+HIN and PSN,all-mode KSI,2018-2022 (in sample for HIN),1687,295,0.0619,0.305,4.9,,0.169,,,
+HIN and PSN,fatal,2023-2025 (out of sample),161,295,0.0619,0.329,5.3,0.329,0.174,0.0,-0.083,0.08
+HIN and PSN,fatal,2018-2022 (in sample for HIN),240,295,0.0619,0.329,5.3,,0.125,,,
