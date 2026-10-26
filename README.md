@@ -50,8 +50,8 @@ Alameda rows, so multi-GB files never sit on disk unless you pass `--keep-raw`.
 About a third of Alameda's injury crashes have no usable location in CCRS, almost all from a few
 city police departments (Oakland PD records none). `python -m audit.coordinates` measures this
 and recovers locations by geocoding street names; results and caveats in
-[`docs/COORDINATE_AUDIT.md`](docs/COORDINATE_AUDIT.md). `audit/compare_tims.py` (written, not yet
-run) compares against TIMS once its CSVs are in `data/manual/tims/`.
+[`docs/COORDINATE_AUDIT.md`](docs/COORDINATE_AUDIT.md). `python -m audit.compare_tims` compares
+CCRS and our geocode against SafeTREC's TIMS points (needs the TIMS CSVs in `data/manual/tims/`).
 
 ## Analysis table
 
