@@ -53,6 +53,13 @@ and recovers locations by geocoding street names; results and caveats in
 [`docs/COORDINATE_AUDIT.md`](docs/COORDINATE_AUDIT.md). `audit/compare_tims.py` (written, not yet
 run) compares against TIMS once its CSVs are in `data/manual/tims/`.
 
+## Analysis table
+
+`python -m analysis.crashes` builds `data/processed/analysis/crashes.parquet`: 73,565 injury and fatal
+crashes (2016-2025) on a TIMS base, with CCRS fields linked in, three coordinate sources side by
+side (SafeTREC, our geocode, officer), and a freeway/surface flag. Surface streets: 43,365 crashes,
+3,406 killed-or-seriously-injured.
+
 ## Storage policy
 
 | What | Where |
