@@ -1,0 +1,11 @@
+band_m,group,in_session,summer,rate_ratio
+0-200,commute,73,6,4.9
+0-200,midday,9,1,3.6
+200-400,commute,100,6,6.7
+200-400,midday,11,6,0.7
+400-800,commute,104,8,5.2
+400-800,midday,7,8,0.4
+800-1600,commute,14,3,1.9
+800-1600,midday,2,2,0.4
+1600-more,commute,1,0,
+1600-more,midday,1,0,
