@@ -1,0 +1,12 @@
+group,dimension,injury,ksi,pct_of_ksi,pct_of_injury,ksi_per_100_injury,ci_low,ci_high
+night 0-5,period,3340,441,13.0,7.7,13.2,12.1,14.4
+morning 6-9,period,6855,405,11.9,15.8,5.9,5.4,6.5
+midday 10-15,period,14796,855,25.2,34.2,5.8,5.4,6.2
+evening 16-19,period,12121,957,28.2,28.0,7.9,7.4,8.4
+late 20-23,period,6169,741,21.8,14.3,12.0,11.2,12.8
+False,weekend,32555,2434,71.5,75.1,7.5,7.2,7.8
+True,weekend,10810,972,28.5,24.9,9.0,8.5,9.5
+dark,lighting_g,12120,1411,41.4,27.9,11.6,11.1,12.2
+daylight,lighting_g,28939,1799,52.8,66.7,6.2,5.9,6.5
+dusk/dawn,lighting_g,1933,168,4.9,4.5,8.7,7.5,10.0
+unknown,lighting_g,373,28,0.8,0.9,7.5,5.2,10.6

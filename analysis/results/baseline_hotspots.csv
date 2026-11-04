@@ -1,0 +1,5 @@
+analysis,cells_with_injury_crash,hot_cells,pct_of_cells,pct_of_ksi_in_hot_cells,overlap_with_2020-25_hot_cells_pct
+"hot spots, all-mode KSI, 2016-25",3612,391,10.8,37.6,
+hot in 2016-19 -> all-mode KSI 2020-25,3612,367,10.2,35.4,79.8
+"hot spots, pedestrian + bicycle KSI, 2016-25",3612,364,10.1,44.7,
+hot in 2016-19 -> pedestrian + bicycle KSI 2020-25,3612,297,8.2,36.6,78.8

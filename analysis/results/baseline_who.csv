@@ -1,0 +1,8 @@
+group,injury_crashes,ksi,pct_of_all_ksi,pct_of_injury_crashes,ksi_per_100_injury,ci_low,ci_high
+pedestrian,5932,940,27.6,13.7,15.8,14.9,16.8
+bicyclist,4859,529,15.5,11.2,10.9,10.0,11.8
+motorcyclist,2783,618,18.1,6.4,22.2,20.7,23.8
+alcohol involved,3810,614,18.0,8.8,16.1,15.0,17.3
+hit and run,7409,619,18.2,17.1,8.4,7.7,9.0
+truck involved,976,66,1.9,2.3,6.8,5.4,8.5
+none of ped/bike/moto,29935,1337,39.3,69.0,4.5,4.2,4.7

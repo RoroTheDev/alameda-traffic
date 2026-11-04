@@ -1,0 +1,8 @@
+group,dimension,tracts,residents,injury,ksi,ped_bike_ksi,injury_per_100k_yr,ksi_per_100k_yr,ped_bike_ksi_per_100k_yr
+False,equity priority community,276,1227531,26178,2190.0,931.0,213.3,17.8,7.6
+True,equity priority community,101,421942,16831,1182.0,521.0,398.9,28.0,12.3
+Q1 lowest,income quintile,76,312780,13177,955.0,444.0,421.3,30.5,14.2
+Q2,income quintile,75,308453,7961,594.0,276.0,258.1,19.3,8.9
+Q3,income quintile,75,328362,8005,635.0,297.0,243.8,19.3,9.0
+Q4,income quintile,75,345857,7272,637.0,243.0,210.3,18.4,7.0
+Q5 highest,income quintile,76,354021,6594,551.0,192.0,186.3,15.6,5.4

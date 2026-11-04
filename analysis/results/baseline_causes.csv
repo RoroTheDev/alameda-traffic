@@ -1,0 +1,13 @@
+code,ksi,share_pct,meaning
+22350,561,16.5,unsafe speed
+22107,462,13.6,unsafe turn / lane change
+21950,378,11.1,driver fails to yield to pedestrian
+23152,332,9.7,drunk or drugged driving
+21453,287,8.4,red signal
+21801,193,5.7,"left turn, failure to yield"
+21954,156,4.6,pedestrian fails to yield to vehicle
+21802,99,2.9,"stop sign, failure to yield"
+22450,80,2.3,stop sign
+21804,73,2.1,"entering road, failure to yield"
+23153,70,2.1,drunk/drugged driving causing injury
+21955,46,1.4,pedestrian crosses outside crosswalk
