@@ -1,0 +1,9 @@
+analysis,outcome,segments,psn_segments,events_total,events_on_psn,IRR,ci_low,ci_high,p
+"PRIMARY: unseen (0 KSI 2018-22), KSI outcome, base controls",ksi_out,31128,2486,693,199,1.49,1.15,1.92,0.0025
+unadjusted (no controls),ksi_out,31128,2486,693,199,4.42,3.66,5.33,0.0
+sensitivity: outcome = all injury crashes,inj_out,31128,2486,8211,2414,1.58,1.34,1.86,0.0
+"sensitivity: stricter sample, 0 injury crashes 2018-22",ksi_out,26016,1471,181,22,0.88,0.49,1.58,0.6717
+"sensitivity: stricter sample, injury outcome",inj_out,26016,1471,1747,183,0.99,0.74,1.33,0.9546
+sensitivity: arterials only,ksi_out,7063,2169,472,192,1.53,1.18,1.98,0.0015
+sensitivity: + school/transit/density/equity controls,ksi_out,31128,2486,693,199,1.17,0.9,1.53,0.2447
+"sensitivity: ALL segments, controlling for 2018-22 KSI history",ksi_out,32462,2903,1066,392,1.36,1.12,1.64,0.002

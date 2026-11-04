@@ -71,6 +71,11 @@ and a segment x year crash panel. See [`docs/SEGMENTS.md`](docs/SEGMENTS.md) for
 `python -m analysis.network_test` measures how much 2023-2025 serious-crash risk the HIN and PSN capture
 against same-length baselines. Summary in [`docs/NETWORK_TEST.md`](docs/NETWORK_TEST.md).
 
+## PSN unseen-risk test
+
+`python -m analysis.psn_unseen` asks whether the Proactive Safety Network flags risk on streets with no
+serious-crash history. Summary and caveats in [`docs/PSN_UNSEEN.md`](docs/PSN_UNSEEN.md).
+
 ## Storage policy
 
 | What | Where |

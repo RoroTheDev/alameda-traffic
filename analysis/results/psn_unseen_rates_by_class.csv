@@ -1,0 +1,13 @@
+cls,psn,segments,miles,events,per_100_mi_yr
+primary,0,418,68.85,29,14.04
+primary,1,810,142.65,69,16.12
+residential,0,22416,2930.56,207,2.35
+residential,1,299,15.06,6,13.28
+secondary,0,1741,337.03,100,9.89
+secondary,1,1102,178.83,95,17.71
+tertiary,0,2602,503.9,146,9.66
+tertiary,1,243,32.11,23,23.88
+trunk,0,133,29.03,5,5.74
+trunk,1,14,2.29,5,72.84
+unclassified,0,1332,203.85,7,1.14
+unclassified,1,18,0.43,1,78.07
