@@ -1,0 +1,55 @@
+evaluation,outcome,method,test_crashes,captured_top5pct_length,captured_top10pct_length,spearman,pred_vs_obs
+"temporal holdout (train 2016-22, test 2023-25)",injury crashes,history (own past crashes),12195,0.442,0.615,0.588,1.08
+"temporal holdout (train 2016-22, test 2023-25)",injury crashes,GLM,12195,0.305,0.475,0.482,1.08
+"temporal holdout (train 2016-22, test 2023-25)",injury crashes,GBM,12195,0.35,0.516,0.494,1.08
+"temporal holdout (train 2016-22, test 2023-25)",injury crashes,GLM + city,12195,0.313,0.478,0.482,1.08
+"temporal holdout (train 2016-22, test 2023-25)",injury crashes,GBM + city,12195,0.35,0.513,0.495,1.08
+"temporal holdout (train 2016-22, test 2023-25)",injury crashes,EB (GLM + city),12195,0.443,0.614,0.515,1.08
+"temporal holdout (train 2016-22, test 2023-25)",injury crashes,EB (GBM + city),12195,0.445,0.619,0.518,1.1
+"temporal holdout (train 2016-22, test 2023-25)",injury crashes,road class only,12195,0.177,0.436,0.426,1.08
+"temporal holdout (train 2016-22, test 2023-25)",KSI crashes,history (own past crashes),1066,0.28,0.508,0.247,0.92
+"temporal holdout (train 2016-22, test 2023-25)",KSI crashes,GLM,1066,0.284,0.441,0.217,0.92
+"temporal holdout (train 2016-22, test 2023-25)",KSI crashes,GBM,1066,0.323,0.473,0.222,0.92
+"temporal holdout (train 2016-22, test 2023-25)",KSI crashes,GLM + city,1066,0.308,0.473,0.218,0.92
+"temporal holdout (train 2016-22, test 2023-25)",KSI crashes,GBM + city,1066,0.313,0.477,0.221,0.92
+"temporal holdout (train 2016-22, test 2023-25)",KSI crashes,"GBM + city, via injury model",1066,0.333,0.489,0.224,
+"temporal holdout (train 2016-22, test 2023-25)",KSI crashes,two-part: GBM+city injury x severity,1066,0.349,0.485,0.223,0.92
+"temporal holdout (train 2016-22, test 2023-25)",KSI crashes,two-part: GLM+city injury x severity,1066,0.307,0.467,0.218,0.92
+"temporal holdout (train 2016-22, test 2023-25)",KSI crashes,EB (GLM + city),1066,0.343,0.511,0.221,0.92
+"temporal holdout (train 2016-22, test 2023-25)",KSI crashes,EB (GBM + city),1066,0.356,0.506,0.224,0.95
+"temporal holdout (train 2016-22, test 2023-25)",KSI crashes,road class only,1066,0.177,0.429,0.193,0.92
+"temporal holdout (train 2016-22, test 2023-25)",ped+bike KSI,history (own past crashes),479,0.426,0.555,0.222,
+"temporal holdout (train 2016-22, test 2023-25)",ped+bike KSI,GLM,479,0.336,0.526,0.156,
+"temporal holdout (train 2016-22, test 2023-25)",ped+bike KSI,GBM,479,0.367,0.562,0.16,
+"temporal holdout (train 2016-22, test 2023-25)",ped+bike KSI,GLM + city,479,0.355,0.537,0.156,
+"temporal holdout (train 2016-22, test 2023-25)",ped+bike KSI,GBM + city,479,0.363,0.562,0.16,
+"temporal holdout (train 2016-22, test 2023-25)",ped+bike KSI,EB (GLM + city),479,0.453,0.603,0.16,
+"temporal holdout (train 2016-22, test 2023-25)",ped+bike KSI,EB (GBM + city),479,0.441,0.601,0.163,
+"temporal holdout (train 2016-22, test 2023-25)",ped+bike KSI,road class only,479,0.148,0.392,0.128,
+spatial blocks + forward in time,injury crashes,history (own past crashes),12195,0.442,0.615,0.588,1.08
+spatial blocks + forward in time,injury crashes,GLM,12195,0.293,0.469,0.48,1.07
+spatial blocks + forward in time,injury crashes,GBM,12195,0.299,0.476,0.485,1.04
+spatial blocks + forward in time,injury crashes,GLM + city,12195,0.301,0.466,0.479,1.09
+spatial blocks + forward in time,injury crashes,GBM + city,12195,0.299,0.472,0.485,1.03
+spatial blocks + forward in time,injury crashes,EB (GLM + city),12195,0.441,0.614,0.513,1.07
+spatial blocks + forward in time,injury crashes,EB (GBM + city),12195,0.442,0.617,0.516,1.06
+spatial blocks + forward in time,injury crashes,road class only,12195,0.177,0.436,0.426,1.08
+spatial blocks + forward in time,KSI crashes,history (own past crashes),1066,0.28,0.508,0.247,0.92
+spatial blocks + forward in time,KSI crashes,GLM,1066,0.258,0.428,0.215,0.94
+spatial blocks + forward in time,KSI crashes,GBM,1066,0.261,0.442,0.217,0.89
+spatial blocks + forward in time,KSI crashes,GLM + city,1066,0.299,0.462,0.216,0.95
+spatial blocks + forward in time,KSI crashes,GBM + city,1066,0.27,0.443,0.217,0.9
+spatial blocks + forward in time,KSI crashes,"GBM + city, via injury model",1066,0.28,0.458,0.221,
+spatial blocks + forward in time,KSI crashes,two-part: GBM+city injury x severity,1066,0.283,0.456,0.219,0.91
+spatial blocks + forward in time,KSI crashes,two-part: GLM+city injury x severity,1066,0.302,0.455,0.216,0.95
+spatial blocks + forward in time,KSI crashes,EB (GLM + city),1066,0.329,0.508,0.22,0.92
+spatial blocks + forward in time,KSI crashes,EB (GBM + city),1066,0.335,0.486,0.222,0.9
+spatial blocks + forward in time,KSI crashes,road class only,1066,0.177,0.429,0.193,0.92
+spatial blocks + forward in time,ped+bike KSI,history (own past crashes),479,0.426,0.555,0.222,
+spatial blocks + forward in time,ped+bike KSI,GLM,479,0.317,0.518,0.155,
+spatial blocks + forward in time,ped+bike KSI,GBM,479,0.309,0.539,0.158,
+spatial blocks + forward in time,ped+bike KSI,GLM + city,479,0.322,0.501,0.156,
+spatial blocks + forward in time,ped+bike KSI,GBM + city,479,0.303,0.528,0.158,
+spatial blocks + forward in time,ped+bike KSI,EB (GLM + city),479,0.449,0.589,0.161,
+spatial blocks + forward in time,ped+bike KSI,EB (GBM + city),479,0.449,0.597,0.162,
+spatial blocks + forward in time,ped+bike KSI,road class only,479,0.148,0.392,0.128,

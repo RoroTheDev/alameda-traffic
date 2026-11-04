@@ -1,0 +1,33 @@
+evaluation,outcome,A,B,budget,A_minus_B,ci_low,ci_high
+temporal,ksi,EB (GBM + city),history (own past crashes),top 5% of length,0.076,0.051,0.102
+temporal,ksi,EB (GBM + city),history (own past crashes),top 10% of length,-0.003,-0.032,0.024
+temporal,ksi,GBM + city,history (own past crashes),top 5% of length,0.033,0.0,0.066
+temporal,ksi,GBM + city,history (own past crashes),top 10% of length,-0.031,-0.069,0.006
+temporal,ksi,GBM + city,GLM + city,top 5% of length,0.006,-0.02,0.03
+temporal,ksi,GBM + city,GLM + city,top 10% of length,0.005,-0.017,0.027
+temporal,ksi,GBM + city,road class only,top 5% of length,0.136,0.096,0.175
+temporal,ksi,GBM + city,road class only,top 10% of length,0.049,0.013,0.083
+temporal,pb,EB (GBM + city),history (own past crashes),top 5% of length,0.015,-0.015,0.041
+temporal,pb,EB (GBM + city),history (own past crashes),top 10% of length,0.046,0.017,0.075
+temporal,pb,GBM + city,road class only,top 5% of length,0.215,0.161,0.268
+temporal,pb,GBM + city,road class only,top 10% of length,0.169,0.111,0.224
+temporal,inj,GBM + city,road class only,top 5% of length,0.173,0.149,0.197
+temporal,inj,GBM + city,road class only,top 10% of length,0.076,0.053,0.099
+temporal,inj,EB (GBM + city),history (own past crashes),top 5% of length,0.003,-0.004,0.012
+temporal,inj,EB (GBM + city),history (own past crashes),top 10% of length,0.005,-0.002,0.011
+spatial + temporal,ksi,EB (GBM + city),history (own past crashes),top 5% of length,0.054,0.027,0.082
+spatial + temporal,ksi,EB (GBM + city),history (own past crashes),top 10% of length,-0.023,-0.05,0.004
+spatial + temporal,ksi,GBM + city,history (own past crashes),top 5% of length,-0.01,-0.048,0.026
+spatial + temporal,ksi,GBM + city,history (own past crashes),top 10% of length,-0.066,-0.104,-0.027
+spatial + temporal,ksi,GBM + city,GLM + city,top 5% of length,-0.029,-0.058,-0.002
+spatial + temporal,ksi,GBM + city,GLM + city,top 10% of length,-0.019,-0.046,0.008
+spatial + temporal,ksi,GBM + city,road class only,top 5% of length,0.093,0.055,0.134
+spatial + temporal,ksi,GBM + city,road class only,top 10% of length,0.014,-0.023,0.053
+spatial + temporal,pb,EB (GBM + city),history (own past crashes),top 5% of length,0.023,-0.004,0.051
+spatial + temporal,pb,EB (GBM + city),history (own past crashes),top 10% of length,0.042,0.011,0.073
+spatial + temporal,pb,GBM + city,road class only,top 5% of length,0.154,0.099,0.208
+spatial + temporal,pb,GBM + city,road class only,top 10% of length,0.136,0.078,0.194
+spatial + temporal,inj,GBM + city,road class only,top 5% of length,0.122,0.096,0.145
+spatial + temporal,inj,GBM + city,road class only,top 10% of length,0.036,0.011,0.057
+spatial + temporal,inj,EB (GBM + city),history (own past crashes),top 5% of length,0.0,-0.008,0.009
+spatial + temporal,inj,EB (GBM + city),history (own past crashes),top 10% of length,0.002,-0.005,0.009

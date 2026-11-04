@@ -76,6 +76,12 @@ against same-length baselines. Summary in [`docs/NETWORK_TEST.md`](docs/NETWORK_
 `python -m analysis.psn_unseen` asks whether the Proactive Safety Network flags risk on streets with no
 serious-crash history. Summary and caveats in [`docs/PSN_UNSEEN.md`](docs/PSN_UNSEEN.md).
 
+## Crash model
+
+`python -m analysis.features` then `python -m analysis.model` fit count models (Poisson regression and
+gradient boosting), a binary severity model and an Empirical Bayes ranking, tested forward in time and with
+neighbourhoods held out. Results: [`docs/MODEL_RESULTS.md`](docs/MODEL_RESULTS.md); plan: [`docs/MODEL_PLAN.md`](docs/MODEL_PLAN.md).
+
 ## Storage policy
 
 | What | Where |
