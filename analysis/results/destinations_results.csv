@@ -1,0 +1,57 @@
+analysis,outcome,term,segments,events,IRR,ci_low,ci_high,p
+"PRIMARY: 400 m, full controls",inj,near_hosp,32462,42939,0.99,0.83,1.18,0.8893
+"PRIMARY: 400 m, full controls",inj,near_snf,32462,42939,1.19,1.06,1.33,0.0038
+check: road controls only,inj,near_hosp,32462,42939,1.23,1.0,1.5,0.0459
+check: road controls only,inj,near_snf,32462,42939,1.52,1.35,1.72,0.0
+check: arterials only,inj,near_hosp,8015,31632,0.89,0.74,1.09,0.2614
+check: arterials only,inj,near_snf,8015,31632,1.12,0.97,1.29,0.1345
+distance bands,inj,"C(hosp_band, Treatment('far'))[T.h0_200]",32462,42939,0.89,0.63,1.26,0.5066
+distance bands,inj,"C(hosp_band, Treatment('far'))[T.h200_400]",32462,42939,0.93,0.74,1.15,0.4884
+distance bands,inj,"C(hosp_band, Treatment('far'))[T.h400_800]",32462,42939,0.91,0.79,1.04,0.1779
+distance bands,inj,"C(hosp_band, Treatment('far'))[T.h800_1600]",32462,42939,0.91,0.83,1.0,0.0536
+distance bands,inj,"C(snf_band, Treatment('far'))[T.s0_200]",32462,42939,1.52,1.27,1.82,0.0
+distance bands,inj,"C(snf_band, Treatment('far'))[T.s200_400]",32462,42939,1.4,1.21,1.63,0.0
+distance bands,inj,"C(snf_band, Treatment('far'))[T.s400_800]",32462,42939,1.32,1.19,1.46,0.0
+distance bands,inj,"C(snf_band, Treatment('far'))[T.s800_1600]",32462,42939,1.26,1.15,1.37,0.0
+"PRIMARY: 400 m, full controls",ksi,near_hosp,32462,3362,0.91,0.68,1.21,0.4994
+"PRIMARY: 400 m, full controls",ksi,near_snf,32462,3362,1.12,0.94,1.33,0.2079
+check: road controls only,ksi,near_hosp,32462,3362,1.04,0.77,1.41,0.7811
+check: road controls only,ksi,near_snf,32462,3362,1.35,1.12,1.62,0.0015
+check: arterials only,ksi,near_hosp,8015,2522,0.74,0.52,1.05,0.0943
+check: arterials only,ksi,near_snf,8015,2522,1.09,0.88,1.36,0.4267
+distance bands,ksi,"C(hosp_band, Treatment('far'))[T.h0_200]",32462,3362,0.9,0.5,1.65,0.7409
+distance bands,ksi,"C(hosp_band, Treatment('far'))[T.h200_400]",32462,3362,0.83,0.6,1.13,0.2362
+distance bands,ksi,"C(hosp_band, Treatment('far'))[T.h400_800]",32462,3362,0.88,0.71,1.09,0.2545
+distance bands,ksi,"C(hosp_band, Treatment('far'))[T.h800_1600]",32462,3362,0.92,0.8,1.07,0.2866
+distance bands,ksi,"C(snf_band, Treatment('far'))[T.s0_200]",32462,3362,1.42,1.07,1.9,0.0164
+distance bands,ksi,"C(snf_band, Treatment('far'))[T.s200_400]",32462,3362,1.27,1.02,1.58,0.0311
+distance bands,ksi,"C(snf_band, Treatment('far'))[T.s400_800]",32462,3362,1.27,1.09,1.49,0.0026
+distance bands,ksi,"C(snf_band, Treatment('far'))[T.s800_1600]",32462,3362,1.2,1.06,1.37,0.0045
+"PRIMARY: 400 m, full controls",pb_ksi,near_hosp,32462,1453,0.97,0.65,1.45,0.8851
+"PRIMARY: 400 m, full controls",pb_ksi,near_snf,32462,1453,1.04,0.82,1.32,0.7367
+check: road controls only,pb_ksi,near_hosp,32462,1453,1.23,0.8,1.9,0.346
+check: road controls only,pb_ksi,near_snf,32462,1453,1.37,1.06,1.76,0.0158
+check: arterials only,pb_ksi,near_hosp,8015,1027,0.7,0.42,1.18,0.1787
+check: arterials only,pb_ksi,near_snf,8015,1027,1.0,0.74,1.36,0.9888
+distance bands,pb_ksi,"C(hosp_band, Treatment('far'))[T.h0_200]",32462,1453,0.91,0.4,2.03,0.8092
+distance bands,pb_ksi,"C(hosp_band, Treatment('far'))[T.h200_400]",32462,1453,0.92,0.6,1.4,0.6822
+distance bands,pb_ksi,"C(hosp_band, Treatment('far'))[T.h400_800]",32462,1453,0.94,0.73,1.22,0.6595
+distance bands,pb_ksi,"C(hosp_band, Treatment('far'))[T.h800_1600]",32462,1453,0.94,0.77,1.14,0.5079
+distance bands,pb_ksi,"C(snf_band, Treatment('far'))[T.s0_200]",32462,1453,1.28,0.85,1.92,0.2377
+distance bands,pb_ksi,"C(snf_band, Treatment('far'))[T.s200_400]",32462,1453,1.34,0.99,1.8,0.0569
+distance bands,pb_ksi,"C(snf_band, Treatment('far'))[T.s400_800]",32462,1453,1.36,1.1,1.69,0.0053
+distance bands,pb_ksi,"C(snf_band, Treatment('far'))[T.s800_1600]",32462,1453,1.35,1.13,1.62,0.0011
+"PRIMARY: 400 m, full controls",older_inj,near_hosp,32462,1203,0.99,0.65,1.52,0.9641
+"PRIMARY: 400 m, full controls",older_inj,near_snf,32462,1203,1.2,0.96,1.51,0.1035
+check: road controls only,older_inj,near_hosp,32462,1203,1.32,0.83,2.08,0.2397
+check: road controls only,older_inj,near_snf,32462,1203,1.66,1.31,2.11,0.0
+check: arterials only,older_inj,near_hosp,8015,831,0.85,0.46,1.59,0.6141
+check: arterials only,older_inj,near_snf,8015,831,1.21,0.9,1.62,0.2169
+distance bands,older_inj,"C(hosp_band, Treatment('far'))[T.h0_200]",32462,1203,0.62,0.3,1.28,0.1998
+distance bands,older_inj,"C(hosp_band, Treatment('far'))[T.h200_400]",32462,1203,1.01,0.63,1.62,0.9717
+distance bands,older_inj,"C(hosp_band, Treatment('far'))[T.h400_800]",32462,1203,0.95,0.72,1.25,0.7203
+distance bands,older_inj,"C(hosp_band, Treatment('far'))[T.h800_1600]",32462,1203,0.89,0.73,1.1,0.2811
+distance bands,older_inj,"C(snf_band, Treatment('far'))[T.s0_200]",32462,1203,1.3,0.87,1.95,0.2049
+distance bands,older_inj,"C(snf_band, Treatment('far'))[T.s200_400]",32462,1203,1.62,1.21,2.16,0.0012
+distance bands,older_inj,"C(snf_band, Treatment('far'))[T.s400_800]",32462,1203,1.37,1.09,1.72,0.0077
+distance bands,older_inj,"C(snf_band, Treatment('far'))[T.s800_1600]",32462,1203,1.32,1.1,1.6,0.0034
