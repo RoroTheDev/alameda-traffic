@@ -1,0 +1,17 @@
+split,budget,strategy,realised_ksi_avoided_per_yr,ci_low,ci_high,spend
+"2022/2023-25 (Part A, already seen)",1000000.0,model (EB),7.817,4.55,12.017,999976
+"2022/2023-25 (Part A, already seen)",1000000.0,raw history,6.417,3.617,10.267,999995
+"2022/2023-25 (Part A, already seen)",1000000.0,HIN-only [exploratory: look-ahead],7.583,4.2,11.9,999983
+"2022/2023-25 (Part A, already seen)",1000000.0,PSN-only [exploratory],6.533,3.733,10.267,999997
+"2022/2023-25 (Part A, already seen)",5000000.0,model (EB),20.65,14.583,27.883,4999547
+"2022/2023-25 (Part A, already seen)",5000000.0,raw history,19.717,14.464,25.783,4995564
+"2022/2023-25 (Part A, already seen)",5000000.0,HIN-only [exploratory: look-ahead],20.3,14.347,27.533,4999646
+"2022/2023-25 (Part A, already seen)",5000000.0,PSN-only [exploratory],17.15,11.43,24.267,4999916
+"2022/2023-25 (Part A, already seen)",15000000.0,model (EB),34.533,25.897,44.217,14999430
+"2022/2023-25 (Part A, already seen)",15000000.0,raw history,27.417,20.997,34.767,14991742
+"2022/2023-25 (Part A, already seen)",15000000.0,HIN-only [exploratory: look-ahead],29.983,21.817,39.083,14999886
+"2022/2023-25 (Part A, already seen)",15000000.0,PSN-only [exploratory],24.967,17.728,33.017,14998022
+"2022/2023-25 (Part A, already seen)",50000000.0,model (EB),50.167,40.367,61.253,49991231
+"2022/2023-25 (Part A, already seen)",50000000.0,raw history,38.033,30.1,47.133,49979895
+"2022/2023-25 (Part A, already seen)",50000000.0,HIN-only [exploratory: look-ahead],32.9,24.497,42.467,49976924
+"2022/2023-25 (Part A, already seen)",50000000.0,PSN-only [exploratory],26.717,19.133,34.886,49993057

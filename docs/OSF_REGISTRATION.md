@@ -53,14 +53,16 @@ Costs of treatments in the allocation are assumptions, not estimates; results in
 
 ## Part B: preregistered analyses (not yet run)
 
-**B1. Exposure replication across count years.** Alameda CTC counts for 2016, 2018, 2020, 2022 (2017 if usable) at the same sites.
-- Hypothesis: the slope of pedestrian injury crashes on log(pedestrians counted) is below 1 in a pooled panel (site and year fixed effects), as in the 2024-only estimate of 0.41.
-- Model: Poisson, crashes within 50 m in the 3 calendar years centred on each count year, offset log(years), predictors log(pedestrians + 1), log(bicycles + e-bikes + 1), count year; standard errors clustered by site.
-- Supports hypothesis if the pooled 95% interval for the pedestrian slope lies below 1; bicyclist slope reported as secondary. Sites unplaced by the geocoder are listed, not hand-placed after seeing outcomes.
+**B1. Exposure replication across count years.** Alameda CTC counts for 2016, 2018, 2020, 2022 (2017 if usable) at the same sites, pooled with 2024.
+- Hypothesis: the slope of pedestrian injury crashes on log(pedestrians counted + 1) is below 1 (95% interval entirely below 1), as in the 2024-only estimate of 0.41.
+- **Primary model (corrected):** pooled Poisson, crashes within 50 m in the 3 calendar years centred on each count year (clipped to 2016-2025), offset log(years in window), predictors log(pedestrians + 1), log(AADT of nearest segment) with a missing flag, road-class group, and count-year indicators; standard errors clustered by site. This is the same specification as the 2024-only analysis, extended to more years.
+- **Secondary (not decisive):** the same with site fixed effects. It is not primary because it uses only within-site changes, where noise in one two-hour count per year biases the slope toward zero and could produce "below 1" by itself; it is reported with that caveat.
+- Bicyclist slope (bicycles + e-bikes) and the model with both counts are secondary. Sites unplaced by the geocoder are listed, not hand-placed after seeing outcomes.
 
-**B2. Allocation under rolling origins.** Two additional splits: train through 2020 / test 2021-23; train through 2021 / test 2022-24 (plus the original 2022 / 2023-25).
-- Hypotheses: (i) at $15M and $50M, model-based (Empirical Bayes) optimisation realises more KSI avoided per year than optimisation on raw history; at $1M and $5M no direction is predicted (the 2022 split's intervals include 1 there); (ii) optimising only on the High-Injury Network realises less than unrestricted optimisation at $50M. **Note: the choice of budgets in (i) was informed by the already-seen 2022 split (Part A), so B2 is confirmatory only for the two new splits.**
-- Method as in `allocate.py` and `allocate_bootstrap.py` (base costs; ratios with street-resampled 95% intervals). Result for (i) is "supported" if the lower interval bound of the model/raw-history ratio is above 1 at both $15M and $50M in each of the two new splits; otherwise "not supported". (ii) is supported if the lower bound of the unrestricted/HIN-only ratio is above 1 at $50M in both new splits.
+**B2. Allocation under rolling origins.** Two additional splits: train through 2020 / test 2021-23; train through 2021 / test 2022-24 (plus the original 2022 / 2023-25, already seen).
+- **Hypothesis H2a (confirmatory):** at $15M and $50M, model-based (Empirical Bayes) optimisation realises more KSI avoided per year than optimisation on raw history; at $1M and $5M no direction is predicted (the 2022 split's intervals include 1 there). **The choice of budgets was informed by the already-seen 2022 split, so H2a is confirmatory only for the two new splits.** Supported if the lower bound of the model/raw-history ratio (street-resampled 95% interval) exceeds 1 at both budgets in both new splits; otherwise "not supported".
+- **H2b is NOT confirmatory (changed from an earlier draft).** Alameda CTC's 2024 High-Injury Network was built on 2018-2022 crashes; in the 2020 and 2021 training splits its construction years overlap the test years, so it has "seen" the outcomes it is scored on. That look-ahead makes a HIN-only comparison unfair. It is reported as exploratory only, with that caveat. The PSN uses no crash data and is reported as exploratory.
+- Method as in `analysis/allocate.py` and `analysis/allocate_bootstrap.py`, implemented in `analysis/partb_allocation_splits.py` (base costs; 2,000 street-resampled draws, fixed seed). The code was validated by reproducing the already-seen 2022 split (ratios 1.22, 1.05, 1.26, 1.32 at $1M, $5M, $15M, $50M), which does not reveal any new-split outcome.
 
 **B3. Corridor speeds as a covariate.** 2024 Appendix C sample speeds (PM and AM peak, Tier 1 and 2 arterials), matched to segments by street name and jurisdiction.
 - Question (two-sided, direction not predicted since congestion lowers speed): on matched arterial segments, does adding log(speed) improve out-of-sample 2023-25 KSI prediction over the current model (Poisson deviance and share of KSI on the top 5% of length)?
@@ -78,3 +80,11 @@ Costs of treatments in the allocation are assumptions, not estimates; results in
 
 ## Reporting and deviations
 Any departure from Part B will be listed in the paper and added as a dated note to this registration.
+
+## Part B code freeze
+Part B code is committed and tagged `prereg-partB-v1` before any Part B outcome is computed:
+- `analysis/partb_b1.py` (H1; checked on synthetic data only, `--selftest`)
+- `analysis/partb_allocation_splits.py` (H2; validated by reproducing the already-seen 2022 split with `--validate`)
+- `analysis/partb_speeds.py` (Q3; synthetic self-test passed; the Appendix C match step had not finished verification at tagging)
+- Q4 has no code: it is conditional on obtaining a dated inventory, and its design is `analysis/bike_lanes.py`.
+Allowed after the tag, and to be listed here with commit hashes: fixes to file parsing or site/corridor matching (for example reading the 2016-2022 count workbooks, which may have different layouts, or correcting the Appendix C parser) that do not change any model, window, metric, interval or decision rule above. Any other change is a deviation and will be reported as one.

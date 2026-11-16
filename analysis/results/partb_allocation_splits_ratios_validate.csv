@@ -1,0 +1,13 @@
+split,budget,comparison,ratio,ci_low,ci_high,draws_with_zero_denominator
+"2022/2023-25 (Part A, already seen)",1000000.0,model (EB) / raw history,1.22,0.96,1.62,0
+"2022/2023-25 (Part A, already seen)",1000000.0,model (EB) / HIN-only [exploratory: look-ahead],1.03,0.96,1.13,0
+"2022/2023-25 (Part A, already seen)",1000000.0,model (EB) / PSN-only [exploratory],1.2,0.91,1.61,0
+"2022/2023-25 (Part A, already seen)",5000000.0,model (EB) / raw history,1.05,0.92,1.17,0
+"2022/2023-25 (Part A, already seen)",5000000.0,model (EB) / HIN-only [exploratory: look-ahead],1.02,0.92,1.13,0
+"2022/2023-25 (Part A, already seen)",5000000.0,model (EB) / PSN-only [exploratory],1.2,1.01,1.49,0
+"2022/2023-25 (Part A, already seen)",15000000.0,model (EB) / raw history,1.26,1.13,1.41,0
+"2022/2023-25 (Part A, already seen)",15000000.0,model (EB) / HIN-only [exploratory: look-ahead],1.15,1.06,1.27,0
+"2022/2023-25 (Part A, already seen)",15000000.0,model (EB) / PSN-only [exploratory],1.38,1.21,1.62,0
+"2022/2023-25 (Part A, already seen)",50000000.0,model (EB) / raw history,1.32,1.23,1.43,0
+"2022/2023-25 (Part A, already seen)",50000000.0,model (EB) / HIN-only [exploratory: look-ahead],1.52,1.37,1.72,0
+"2022/2023-25 (Part A, already seen)",50000000.0,model (EB) / PSN-only [exploratory],1.88,1.63,2.25,0
