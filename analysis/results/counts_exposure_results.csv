@@ -1,0 +1,16 @@
+analysis,outcome,term,sites,crashes,slope,ci_low,ci_high,p
+"PRIMARY: 50 m, 2020-25 + controls",ped_inj,log_ped,120,123,0.41,0.24,0.57,0.0
+"PRIMARY: 50 m, 2020-25, no controls",ped_inj,log_ped,120,123,0.38,0.23,0.53,0.0
+"PRIMARY: 50 m, 2020-25 + log_bike",ped_inj,log_ped,120,123,0.53,0.27,0.79,0.0001
+"PRIMARY: 50 m, 2020-25 + controls",bike_inj,log_bike,120,117,0.24,0.0,0.48,0.048
+"PRIMARY: 50 m, 2020-25, no controls",bike_inj,log_bike,120,117,0.25,0.02,0.48,0.0359
+"PRIMARY: 50 m, 2020-25 + log_ped",bike_inj,log_bike,120,117,0.03,-0.29,0.35,0.8462
+"PRIMARY: 50 m, 2020-25 + controls",pb_ksi,log_ped,120,35,0.21,-0.03,0.45,0.0841
+"PRIMARY: 50 m, 2020-25, no controls",pb_ksi,log_ped,120,35,0.18,-0.06,0.42,0.1361
+"PRIMARY: 50 m, 2020-25 + log_bike",pb_ksi,log_ped,120,35,0.38,-0.01,0.77,0.0545
+check: 100 m + controls,ped_inj,log_ped,120,163,0.45,0.3,0.59,0.0
+check: 100 m + controls,bike_inj,log_bike,120,143,0.32,0.1,0.55,0.0054
+check: 100 m + controls,pb_ksi,log_ped,120,47,0.24,-0.0,0.47,0.0524
+check: 2016-25 + controls,ped_inj,log_ped,120,231,0.41,0.28,0.54,0.0
+check: 2016-25 + controls,bike_inj,log_bike,120,197,0.3,0.07,0.54,0.0125
+check: 2016-25 + controls,pb_ksi,log_ped,120,56,0.15,-0.05,0.34,0.1428

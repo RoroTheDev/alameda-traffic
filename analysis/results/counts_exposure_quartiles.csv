@@ -1,0 +1,5 @@
+ped_q,sites,ped_mean,ped_crashes,ped_crashes_per_site_yr,crashes_per_100k_peds_counted
+Q1 low,30,15.533333333333333,14.0,0.08,3004.0
+Q2,30,46.43333333333333,22.0,0.12,1579.0
+Q3,30,105.73333333333333,30.0,0.17,946.0
+Q4 high,30,449.1,57.0,0.32,423.0
