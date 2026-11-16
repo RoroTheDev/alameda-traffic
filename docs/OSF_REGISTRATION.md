@@ -85,6 +85,6 @@ Any departure from Part B will be listed in the paper and added as a dated note 
 Part B code is committed and tagged `prereg-partB-v1` before any Part B outcome is computed:
 - `analysis/partb_b1.py` (H1; checked on synthetic data only, `--selftest`)
 - `analysis/partb_allocation_splits.py` (H2; validated by reproducing the already-seen 2022 split with `--validate`)
-- `analysis/partb_speeds.py` (Q3; synthetic self-test passed; the Appendix C match step had not finished verification at tagging)
+- `analysis/partb_speeds.py` (Q3; synthetic self-test passed; the Appendix C match step finished after tagging with no code change: 566 corridor rows parsed in each of the PM and AM tables, 2,666 of 8,015 arterial segments (33.3%; 39.6% of arterial miles) matched by street name and jurisdiction, no crash outcomes involved)
 - Q4 has no code: it is conditional on obtaining a dated inventory, and its design is `analysis/bike_lanes.py`.
 Allowed after the tag, and to be listed here with commit hashes: fixes to file parsing or site/corridor matching (for example reading the 2016-2022 count workbooks, which may have different layouts, or correcting the Appendix C parser) that do not change any model, window, metric, interval or decision rule above. Any other change is a deviation and will be reported as one.
