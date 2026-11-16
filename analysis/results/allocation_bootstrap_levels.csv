@@ -1,0 +1,37 @@
+budget,strategy,realised_ksi_avoided_per_yr,ci_low,ci_high,spend
+1000000.0,optimised: model (EB),7.817,4.433,11.783,999976.0
+1000000.0,"optimised: model (EB), >=50% to equity areas",7.817,4.433,11.783,999976.0
+1000000.0,optimised: raw past crashes,6.417,3.383,10.036,999995.0
+1000000.0,worst-first by past KSI,4.55,2.217,7.583,999989.0
+1000000.0,optimised within HIN only,7.583,4.197,11.553,999983.0
+1000000.0,optimised within PSN only,6.533,3.617,10.036,999997.0
+1000000.0,HIN-first (random within),0.586,0.42,0.773,999905.0
+1000000.0,PSN-first (random within),0.528,0.362,0.706,999902.0
+1000000.0,random eligible,0.295,0.219,0.373,999924.0
+5000000.0,optimised: model (EB),20.65,14.583,27.533,4999547.0
+5000000.0,"optimised: model (EB), >=50% to equity areas",20.183,14.233,26.72,4999980.0
+5000000.0,optimised: raw past crashes,19.717,14.233,25.433,4995564.0
+5000000.0,worst-first by past KSI,16.917,11.314,23.217,4999853.0
+5000000.0,optimised within HIN only,20.3,14.233,26.95,4999646.0
+5000000.0,optimised within PSN only,17.15,11.317,23.803,4999916.0
+5000000.0,HIN-first (random within),2.561,1.919,3.296,4999906.0
+5000000.0,PSN-first (random within),2.071,1.479,2.745,4999901.0
+5000000.0,random eligible,1.35,1.056,1.654,4999921.0
+15000000.0,optimised: model (EB),34.533,26.13,43.633,14999430.0
+15000000.0,"optimised: model (EB), >=50% to equity areas",33.833,25.547,42.933,14999949.0
+15000000.0,optimised: raw past crashes,27.417,20.883,34.536,14991742.0
+15000000.0,worst-first by past KSI,26.367,19.717,33.95,14999895.0
+15000000.0,optimised within HIN only,29.983,22.283,38.733,14999886.0
+15000000.0,optimised within PSN only,24.967,17.85,33.133,14998022.0
+15000000.0,HIN-first (random within),6.988,5.288,8.91,14999912.0
+15000000.0,PSN-first (random within),5.932,4.293,7.791,14999911.0
+15000000.0,random eligible,4.139,3.351,5.011,14999898.0
+50000000.0,optimised: model (EB),50.167,40.6,60.667,49991231.0
+50000000.0,"optimised: model (EB), >=50% to equity areas",49.233,39.9,59.967,49993672.0
+50000000.0,optimised: raw past crashes,38.033,30.097,46.783,49979895.0
+50000000.0,worst-first by past KSI,38.267,30.444,47.25,49999690.0
+50000000.0,optimised within HIN only,32.9,24.967,42.236,49976924.0
+50000000.0,optimised within PSN only,26.717,19.6,35.0,49993057.0
+50000000.0,HIN-first (random within),22.674,17.148,29.077,49999884.0
+50000000.0,PSN-first (random within),19.273,14.011,25.286,49999890.0
+50000000.0,random eligible,13.533,11.004,16.357,49999903.0

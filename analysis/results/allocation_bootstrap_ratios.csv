@@ -1,0 +1,33 @@
+budget,comparison,ratio,ci_low,ci_high,share_of_draws_above_1
+1000000.0,"optimised: model (EB) / optimised: model (EB), >=50% to equity areas",1.0,1.0,1.0,0.0
+1000000.0,optimised: model (EB) / optimised: raw past crashes,1.22,0.94,1.65,0.928
+1000000.0,optimised: model (EB) / worst-first by past KSI,1.72,1.31,2.55,1.0
+1000000.0,optimised: model (EB) / optimised within HIN only,1.03,0.96,1.14,0.738
+1000000.0,optimised: model (EB) / optimised within PSN only,1.2,0.9,1.64,0.884
+1000000.0,optimised: model (EB) / HIN-first (random within),13.33,8.22,18.84,1.0
+1000000.0,optimised: model (EB) / PSN-first (random within),14.81,9.47,21.0,1.0
+1000000.0,optimised: model (EB) / random eligible,26.53,15.84,40.45,1.0
+5000000.0,"optimised: model (EB) / optimised: model (EB), >=50% to equity areas",1.02,1.0,1.05,0.946
+5000000.0,optimised: model (EB) / optimised: raw past crashes,1.05,0.92,1.17,0.768
+5000000.0,optimised: model (EB) / worst-first by past KSI,1.22,1.05,1.44,0.993
+5000000.0,optimised: model (EB) / optimised within HIN only,1.02,0.92,1.12,0.62
+5000000.0,optimised: model (EB) / optimised within PSN only,1.2,1.01,1.49,0.979
+5000000.0,optimised: model (EB) / HIN-first (random within),8.06,6.68,9.5,1.0
+5000000.0,optimised: model (EB) / PSN-first (random within),9.97,8.04,12.2,1.0
+5000000.0,optimised: model (EB) / random eligible,15.29,12.0,18.98,1.0
+15000000.0,"optimised: model (EB) / optimised: model (EB), >=50% to equity areas",1.02,0.98,1.07,0.817
+15000000.0,optimised: model (EB) / optimised: raw past crashes,1.26,1.14,1.41,1.0
+15000000.0,optimised: model (EB) / worst-first by past KSI,1.31,1.18,1.47,1.0
+15000000.0,optimised: model (EB) / optimised within HIN only,1.15,1.05,1.28,1.0
+15000000.0,optimised: model (EB) / optimised within PSN only,1.38,1.22,1.62,1.0
+15000000.0,optimised: model (EB) / HIN-first (random within),4.94,4.44,5.49,1.0
+15000000.0,optimised: model (EB) / PSN-first (random within),5.82,5.08,6.84,1.0
+15000000.0,optimised: model (EB) / random eligible,8.34,7.35,9.29,1.0
+50000000.0,"optimised: model (EB) / optimised: model (EB), >=50% to equity areas",1.02,0.99,1.05,0.93
+50000000.0,optimised: model (EB) / optimised: raw past crashes,1.32,1.23,1.43,1.0
+50000000.0,optimised: model (EB) / worst-first by past KSI,1.31,1.22,1.42,1.0
+50000000.0,optimised: model (EB) / optimised within HIN only,1.52,1.37,1.73,1.0
+50000000.0,optimised: model (EB) / optimised within PSN only,1.88,1.65,2.21,1.0
+50000000.0,optimised: model (EB) / HIN-first (random within),2.21,2.0,2.49,1.0
+50000000.0,optimised: model (EB) / PSN-first (random within),2.6,2.27,3.09,1.0
+50000000.0,optimised: model (EB) / random eligible,3.71,3.52,3.89,1.0

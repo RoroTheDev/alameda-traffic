@@ -40,3 +40,26 @@ These leave out design, signal and drainage work, outreach and staff time. Conse
 One split (train 2016-22, test 2023-25); the realised numbers have Poisson noise from few KSI per segment. Eligibility rules
 (lanes, AADT, marked crossings) rest on OSM and HPMS tags. Bike lanes are not a treatment option because no sourced cost was
 found. Restricted HIN and PSN lines are never written out, only these summaries.
+
+## Uncertainty (bootstrap), base costs
+Reproduce: `python -m analysis.allocate_bootstrap`. Tables: `analysis/results/allocation_bootstrap_levels.csv`, `allocation_bootstrap_ratios.csv`.
+Each strategy's list is chosen once from data through 2022. The 2023-25 outcomes are then resampled by street (19,540 streets, 2,000
+draws) and every strategy is rescored on the same draw, so ratios are paired. Not captured: noise in the 2016-22 training data, the choice
+of split year (one split), and the assumed costs and crash reduction factors.
+
+Realised KSI avoided per year, model-based optimisation vs others (ratio, 95% interval):
+
+| Budget | vs raw-history optimisation | vs worst-first | vs HIN-only optimisation | vs PSN-only | with equity floor (model / floor) |
+|---|---|---|---|---|---|
+| $1M | 1.22 (0.94-1.65) | 1.72 (1.31-2.55) | 1.03 (0.96-1.14) | 1.20 (0.90-1.64) | 1.00 (1.00-1.00) |
+| $5M | 1.05 (0.92-1.17) | 1.22 (1.05-1.44) | 1.02 (0.92-1.12) | 1.20 (1.01-1.49) | 1.02 (1.00-1.05) |
+| $15M | 1.26 (1.14-1.41) | 1.31 (1.18-1.47) | 1.15 (1.05-1.28) | 1.38 (1.22-1.62) | 1.02 (0.98-1.07) |
+| $50M | 1.32 (1.23-1.43) | 1.31 (1.22-1.42) | 1.52 (1.37-1.73) | 1.88 (1.65-2.21) | 1.02 (0.99-1.05) |
+
+How to read it: the model-based advantage over raw history is clear at $15M and $50M (intervals above 1) but at $1M and $5M it is
+not distinguishable from zero, so the earlier "5-32% better" holds only for the larger budgets. Restricting to the High-Injury Network costs
+nothing detectable up to $5M, 15% at $15M and a third at $50M (1.52); restricting to the PSN costs 20% or more at every budget (1.20 at
+$1M and $5M, 1.38 at $15M, 1.88 at $50M). The equity floor costs about 2% at every budget, never clearly more than that. Choosing among eligible
+options by network membership and then at random (the "network-first" rows) is far below optimisation at every budget, as is random choice.
+At $1M the equity floor does not bind (the optimal list already meets it).
+Absolute levels (for example 20.7 KSI avoided a year at $5M, interval 14.6-27.5) inherit the assumed costs and are not findings.

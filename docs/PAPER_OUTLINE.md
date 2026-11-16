@@ -26,7 +26,7 @@ Status tags: **solid** (holds across checks), **moderate** (one design or one sp
 
 ## 5. Allocation (Part 5) - [ALLOCATION.md](ALLOCATION.md) - demo
 - Method: exact multiple-choice knapsack, Caltrans CRFs, out-of-sample scoring. Costs are assumptions, so dollars and BCRs are not findings.
-- Usable result: model-based optimisation beats raw-history optimisation by 5-32% more KSI avoided at equal spending; restricting to the HIN costs little at small budgets and a third at $50M; an equity floor costs ~2%.
+- Usable result: model-based optimisation beats raw-history optimisation by 26% at $15M and 32% at $50M (bootstrap intervals above 1); at $1M and $5M the gain (22%, 5%) is not distinguishable from zero. Restricting to the HIN costs nothing detectable up to $5M and a third at $50M; PSN-only loses 20-88%; an equity floor costs ~2%. See [ALLOCATION.md](ALLOCATION.md).
 
 ## Gaps that decide whether this is a paper or a report
 1. **Exposure.** Partly closed: 2024 counts downloaded and used at 120 placed sites ([EXPOSURE_COUNTS.md](EXPOSURE_COUNTS.md)): crashes rise with people at slope ~0.4 (safety in numbers), pedestrian volume is only partly predictable (R2 0.44) from land use, bicycle volume is not (0.08). Still open: other count years, Appendix C speeds (downloaded, not yet matched), exposure for all 32k segments.
