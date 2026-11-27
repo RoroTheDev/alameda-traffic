@@ -1,0 +1,12 @@
+analysis,outcome,term,rows,sites,crashes,slope,ci_low,ci_high,p
+"PRIMARY: pooled, controls, year effects",ped_inj,log_ped,606,137,337,0.384,0.263,0.505,0.0
+secondary: no controls,ped_inj,log_ped,606,137,337,0.354,0.24,0.468,0.0
+secondary: + bicyclist count,ped_inj,log_ped,606,137,337,0.516,0.329,0.703,0.0
+secondary: site fixed effects (slope biased toward 0),ped_inj,log_ped,425,94,337,-0.07,-0.309,0.168,0.5628
+secondary: bicyclist crashes on bicycle count,bike_inj,log_bike,606,137,294,0.306,0.117,0.495,0.0015
+"secondary: bicyclist crashes, both counts",bike_inj,log_bike,606,137,294,0.121,-0.124,0.366,0.3327
+secondary: ped+bike KSI on pedestrian count,pb_ksi,log_ped,606,137,86,0.133,-0.038,0.304,0.1282
+secondary: without largest-count site,ped_inj,log_ped,602,136,334,0.385,0.262,0.509,0.0
+positive control: AADT coefficient > 0,ped_inj,log_aadt,606,137,337,0.036,-0.151,0.223,0.7052
+check: 100 m,ped_inj,log_ped,606,137,412,0.428,0.308,0.547,0.0
+check: all years 2016-25,ped_inj,log_ped,606,137,1137,0.41,0.293,0.526,0.0
