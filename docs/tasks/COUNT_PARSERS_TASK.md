@@ -1,5 +1,8 @@
 # Task: parse the 2016–2022 Alameda CTC bike/ped count workbooks
 
+> **Status (2026-11-26): done in-house.** Implemented in `analysis/counts.py`; results and checks are recorded in
+> `docs/OSF_REGISTRATION.md` under "Post-tag changes". This brief is kept as the checklist the work followed.
+
 **Why this matters.** Preregistered hypothesis H1 asks whether pedestrian crashes rise more slowly than the number of
 people walking, using a panel of count years (2016, 2017, 2018, 2020, 2022, 2024). Only 2024 is parsed so far
 (`analysis/counts.py`). H1 is run **once** (`analysis/partb_b1.py`), so the parsed counts have to be right before that
