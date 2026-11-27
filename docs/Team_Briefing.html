@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>AI Through Maths, and What We Are Doing With It</title>
+<style>
+@page { size: Letter; margin: 0.7in 0.8in 0.7in 0.8in; }
+* { box-sizing: border-box; }
+body { font-family: Calibri, "Segoe UI", Arial, sans-serif; font-size: 10.3pt; line-height: 1.36; color: #1b1b1b; margin: 0; }
+.page { page-break-after: always; break-after: page; }
+.page:last-child { page-break-after: auto; break-after: auto; }
+h1 { font-size: 17pt; margin: 0 0 2px 0; color: #12355b; }
+.sub { color: #555; font-size: 9.5pt; margin-bottom: 8px; }
+h2 { font-size: 14pt; margin: 0 0 6px 0; color: #12355b; border-bottom: 2px solid #12355b; padding-bottom: 3px; }
+h3 { font-size: 10.8pt; margin: 9px 0 2px 0; color: #12355b; }
+p { margin: 0 0 6px 0; }
+.eq { font-family: "Cambria Math", Cambria, "Times New Roman", serif; font-size: 11.3pt; text-align: center; margin: 5px 0 7px 0; }
+.m { font-family: "Cambria Math", Cambria, "Times New Roman", serif; font-size: 11pt; }
+.box { background: #eef3f9; border-left: 4px solid #12355b; padding: 6px 10px; margin: 7px 0; }
+.warn { background: #fff4e5; border-left: 4px solid #c26a00; padding: 6px 10px; margin: 7px 0; }
+.ours { background: #eef7ee; border-left: 4px solid #2e7d32; padding: 6px 10px; margin: 7px 0; }
+ul { margin: 2px 0 6px 0; padding-left: 20px; } li { margin-bottom: 2px; }
+table { border-collapse: collapse; width: 100%; font-size: 9pt; margin: 4px 0 6px 0; }
+th, td { border: 1px solid #b9c3cf; padding: 3px 6px; vertical-align: top; text-align: left; }
+th { background: #dfe8f2; }
+.tag { font-weight: bold; }
+.foot { margin-top: 8px; font-size: 8pt; color: #777; border-top: 1px solid #ccc; padding-top: 3px; }
+</style></head><body>
+
+<!-- ============================ PAGE 1 ============================ -->
+<div class="page">
+<h1>AI Through Maths, and What We Are Doing With It</h1>
+<div class="sub">Briefing for a new team member &middot; Alameda County traffic-safety research project &middot; 15 Nov 2026</div>
+
+<h2>1. What "AI" actually is: a function fitted to data</h2>
+<p>Almost everything called AI in this project is one idea. There is a function <i>f</i> that takes inputs <i>x</i> and returns a prediction
+<i>ŷ</i> = <i>f</i>(<i>x</i>; <i>θ</i>). The numbers <i>θ</i> are the <b>parameters</b>. "Learning" means choosing <i>θ</i> so the predictions match data we already
+have. There is no magic step; it is optimisation.</p>
+
+<div class="box"><b>The recipe.</b> Data: pairs (<i>x</i><sub><i>i</i></sub>, <i>y</i><sub><i>i</i></sub>), <i>i</i> = 1…<i>n</i>. A <b>loss</b> measures how wrong one prediction is, ℓ(<i>y</i>, <i>ŷ</i>).
+Total loss <i>L</i>(<i>θ</i>) = Σ<sub><i>i</i></sub> ℓ(<i>y</i><sub><i>i</i></sub>, <i>f</i>(<i>x</i><sub><i>i</i></sub>; <i>θ</i>)). Learning is
+<div class="eq"><i>θ̂</i> = argmin<sub><i>θ</i></sub> <i>L</i>(<i>θ</i>)</div></div>
+
+<h3>The simplest case: linear regression</h3>
+<p>Take <i>f</i>(<i>x</i>; <i>β</i>) = <i>β</i><sub>0</sub> + <i>β</i><sub>1</sub><i>x</i><sub>1</sub> + … + <i>β</i><sub><i>p</i></sub><i>x</i><sub><i>p</i></sub> and squared loss ℓ = (<i>y</i> − <i>ŷ</i>)².
+Stack the inputs into a matrix <i>X</i> (one row per example). Setting the derivative of <i>L</i> to zero gives the normal equations and the answer in closed form:</p>
+<div class="eq"><i>β̂</i> = (<i>X</i><sup>⊤</sup><i>X</i>)<sup>−1</sup> <i>X</i><sup>⊤</sup><i>y</i></div>
+<p>Geometrically, <i>Xβ̂</i> is the orthogonal projection of <i>y</i> onto the column space of <i>X</i>. If you have done linear algebra, you already know how the most basic "AI model" works.</p>
+
+<h3>When there is no closed form: gradient descent</h3>
+<p>For most models the minimum cannot be written down. Instead we walk downhill. The gradient ∇<i>L</i> points in the direction of steepest increase, so repeat
+<div class="eq"><i>θ</i> ← <i>θ</i> − <i>η</i> ∇<i>L</i>(<i>θ</i>)</div>
+with a small step size (<b>learning rate</b>) <i>η</i>. Neural networks, including the large language models behind chatbots, are trained this way, just with millions or billions of parameters.</p>
+
+<h3>Vocabulary</h3>
+<ul>
+<li><b>Features</b> <i>x</i>: the inputs we choose. <b>Target</b> <i>y</i>: what we predict. <b>Parameters</b> <i>θ</i>: learned. <b>Hyperparameters</b>: set by us, not learned (for example the penalty <i>λ</i> on page 3).</li>
+<li><b>Training data</b> is what <i>θ</i> is fitted on; <b>test data</b> is data the model never saw, used to judge it honestly.</li>
+</ul>
+
+<div class="ours"><b>In our project.</b> One row is one quarter-mile street segment (there are 32,462 in Alameda County). The features are road class, traffic volume, lanes,
+intersections, schools and bus stops nearby, population density and more. The target is the number of killed-or-seriously-injured (KSI) crashes. The goal is to predict
+which streets will have serious crashes <i>before</i> they happen, and to say where limited money prevents the most.</div>
+<div class="foot">Page 1 of 7 &middot; Sections 1 to 5 explain the maths; sections 6 and 7 explain our project.</div>
+</div>
+
+<!-- ============================ PAGE 2 ============================ -->
+<div class="page">
+<h2>2. Probability: why crash counts need a different loss</h2>
+<p>Squared loss quietly assumes errors are symmetric with the same spread everywhere. Crash counts are not like that: they are non-negative integers and mostly zero
+(a typical segment has no serious crash in a year). So we model the <i>distribution</i> of the data, not just its centre.</p>
+
+<h3>The Poisson distribution</h3>
+<p>If crashes arrive independently at a steady average rate, the count <i>Y</i> over a period follows a Poisson distribution with mean <i>μ</i>:</p>
+<div class="eq"><i>P</i>(<i>Y</i> = <i>k</i>) = e<sup>−<i>μ</i></sup> <i>μ</i><sup><i>k</i></sup> / <i>k</i>!,  &nbsp; E[<i>Y</i>] = Var(<i>Y</i>) = <i>μ</i></div>
+
+<h3>Maximum likelihood: the general form of "choose θ to fit"</h3>
+<p>The likelihood is the probability the model gives to the data we saw. We choose <i>θ</i> to maximise it, which is the same as minimising the negative log-likelihood, so
+<b>the loss is −log P(data | θ)</b>. For Poisson counts:</p>
+<div class="eq">log <i>𝓛</i>(<i>θ</i>) = Σ<sub><i>i</i></sub> [ <i>y</i><sub><i>i</i></sub> log <i>μ</i><sub><i>i</i></sub> − <i>μ</i><sub><i>i</i></sub> − log(<i>y</i><sub><i>i</i></sub>!) ]</div>
+<p>Squared loss is the special case where the errors are assumed Gaussian. Choosing a loss is choosing a probability model.</p>
+
+<h3>Poisson regression with an exposure offset (our main model)</h3>
+<div class="eq">log <i>μ</i><sub><i>i</i></sub> = <i>β</i><sub>0</sub> + <i>β</i><sub>1</sub><i>x</i><sub>1<i>i</i></sub> + … + <i>β</i><sub><i>p</i></sub><i>x</i><sub><i>pi</i></sub> + log <i>t</i><sub><i>i</i></sub></div>
+<p>Here <i>t</i><sub><i>i</i></sub> is <b>exposure</b>: segment length in miles times years observed. Because log <i>t</i><sub><i>i</i></sub> enters with coefficient 1 (an "offset"), the expected
+count is <i>μ</i><sub><i>i</i></sub> = <i>t</i><sub><i>i</i></sub> × rate, so a segment twice as long has twice as many expected crashes. The log link also makes effects <i>multiplicative</i>: raising <i>x</i><sub><i>j</i></sub> by one unit
+multiplies the rate by e<sup><i>β</i><sub><i>j</i></sub></sup>, called the <b>incidence rate ratio (IRR)</b>. IRR 1.19 means 19% more crashes.</p>
+
+<h3>Overdispersion</h3>
+<p>Real counts vary more than Poisson allows (Var &gt; mean) because segments differ in ways we do not measure. The <b>negative binomial</b> fixes this with an extra parameter <i>α</i>:</p>
+<div class="eq">Var(<i>Y</i>) = <i>μ</i> + <i>α</i><i>μ</i><sup>2</sup></div>
+<p>Page 4 uses <i>α</i> directly.</p>
+
+<h3>Standard errors and intervals</h3>
+<p>The maximum-likelihood estimate <i>β̂</i> is approximately normal with a standard error SE, so a 95% interval is <i>β̂</i> ± 1.96 SE, and for the IRR we exponentiate both ends. The formula assumes
+independent observations. Neighbouring segments of one street are <i>not</i> independent, so we <b>cluster the standard errors by street</b>; ignoring this makes intervals too narrow.</p>
+
+<div class="ours"><b>Worked example from our data.</b> Across 120 intersections with counts, we fitted log <i>μ</i> = <i>c</i> + <i>β</i> log(pedestrians + 1) and got <i>β̂</i> = 0.41 (95% interval 0.24 to 0.57).
+Doubling the pedestrians multiplies expected pedestrian crashes by 2<sup>0.41</sup> ≈ 1.33, not by 2. This is a <b>log-log slope (an elasticity)</b>: slope 1 would mean crashes proportional to people; below 1 is the "safety in numbers" pattern.</div>
+<div class="foot">Page 2 of 7</div>
+</div>
+
+<!-- ============================ PAGE 3 ============================ -->
+<div class="page">
+<h2>3. Fitting versus memorising: overfitting and honest testing</h2>
+<p>A flexible enough function can reproduce the training data perfectly and still predict nothing. For squared error, the expected test error splits into three parts:</p>
+<div class="eq">E[(<i>y</i> − <i>ŷ</i>)<sup>2</sup>] = Bias<sup>2</sup> + Variance + Noise</div>
+<p>More flexibility lowers bias but raises variance. Training error only ever falls as the model gets more flexible; <b>test error is U-shaped</b>. So the only fair question is how a model does on data it has not seen.</p>
+
+<h3>Three defences we use</h3>
+<ul>
+<li><b>Forward-in-time holdout.</b> Fit on crashes from 2016 to 2022, score on 2023 to 2025. This matches real use: predict the future from the past.</li>
+<li><b>Spatial holdout.</b> Hold out whole 5 km grid cells so the model cannot lean on neighbouring segments that share unmeasured traits.</li>
+<li><b>Regularisation.</b> Penalise large coefficients. Ridge regression minimises <i>L</i>(<i>β</i>) + <i>λ</i> Σ<sub><i>j</i></sub> <i>β</i><sub><i>j</i></sub><sup>2</sup>. The penalty <i>λ</i> is a hyperparameter chosen by cross-validation. We predict pedestrian counts from land-use features with ridge and score it by leave-one-out <i>R</i><sup>2</sup> = 1 − Σ(<i>y</i> − <i>ŷ</i>)<sup>2</sup> / Σ(<i>y</i> − <i>ȳ</i>)<sup>2</sup>, which on held-out sites was 0.44.</li>
+</ul>
+
+<h3>Gradient boosting</h3>
+<p>Build the prediction as a sum of many small decision trees, <i>f</i>(<i>x</i>) = Σ<sub><i>m</i>=1</sub><sup><i>M</i></sup> <i>η</i> <i>h</i><sub><i>m</i></sub>(<i>x</i>). Each new tree <i>h</i><sub><i>m</i></sub> is fitted to the negative gradient of the loss at the current prediction,
+so the procedure is gradient descent in "function space". We boost with the Poisson loss above. In our data it performed about the same as the plain Poisson regression, so the simpler model wins ties.</p>
+
+<h3>Neural networks and language models (the AI in the news)</h3>
+<p>A neural network composes simple functions: <i>f</i>(<i>x</i>) = <i>W</i><sub><i>L</i></sub> σ(… σ(<i>W</i><sub>2</sub> σ(<i>W</i><sub>1</sub><i>x</i>))), where the <i>W</i> are matrices and σ is a nonlinearity such as max(0, <i>z</i>). Gradients come from the chain rule applied layer by layer (backpropagation).
+A language model reads text as tokens and outputs a probability for the next token with the <b>softmax</b>:</p>
+<div class="eq"><i>P</i>(token <i>j</i>) = e<sup><i>z</i><sub><i>j</i></sub></sup> / Σ<sub><i>k</i></sub> e<sup><i>z</i><sub><i>k</i></sub></sup></div>
+<p>and it is trained to minimise the cross-entropy −Σ log <i>P</i>(true next token), which is the same negative-log-likelihood idea as the Poisson loss. Its core operation, attention, is
+softmax(<i>QK</i><sup>⊤</sup>/√<i>d</i>)<i>V</i>: a weighted average of vectors with weights from dot products.</p>
+
+<div class="warn"><b>Why this matters for how we work.</b> A language model is trained to produce plausible text, not verified text. The code and drafts that Claude produced for this project are useful and fast, and they can still be confidently wrong.
+So every number in our write-up must trace to a committed result file, and every method must be checkable by a human who understands the maths. That is part of your job.</div>
+<div class="foot">Page 3 of 7</div>
+</div>
+
+<!-- ============================ PAGE 4 ============================ -->
+<div class="page">
+<h2>4. Bayes, shrinkage, and regression to the mean</h2>
+<p><b>Bayes' rule</b> combines prior knowledge with evidence: <i>P</i>(<i>θ</i> | data) ∝ <i>P</i>(data | <i>θ</i>) <i>P</i>(<i>θ</i>). The posterior balances the two, in proportion to how informative each is.</p>
+
+<h3>The problem: lucky and unlucky places</h3>
+<p>A segment had 3 serious crashes in 3 years while similar segments had 0.4. Is it dangerous, or unlucky? Serious crashes are rare random events, so the places with the highest counts are partly the unluckiest ones.
+Next period they tend to come back down with no intervention at all. This is <b>regression to the mean</b>. It causes two errors: ranking streets by raw counts over-picks unlucky ones, and a fix installed at a high-count place looks like it worked even when it did nothing.</p>
+
+<h3>Empirical Bayes (EB): use both the model and the history</h3>
+<p>Let <i>μ</i> be what the model predicts for this segment (what similar streets typically get) and <i>y</i> its own observed count over the same period. If true rates vary across segments like a gamma distribution, Poisson counts give a negative binomial,
+and the posterior mean is a weighted average:</p>
+<div class="eq">EB = <i>w</i> <i>μ</i> + (1 − <i>w</i>) <i>y</i>,  &nbsp; <i>w</i> = 1 / (1 + <i>α</i><i>μ</i>)</div>
+<p>(standard form, with <i>μ</i> as the expected count over the period and <i>α</i> the overdispersion from page 2). When the segments differ only a little (small <i>α</i>), <i>w</i> is near 1 and we trust the model. When they differ a lot, we trust the segment's own record.</p>
+<div class="box"><b>Illustrative numbers (not from our data).</b> <i>μ</i> = 1.0 expected crashes, <i>α</i> = 0.5, so <i>w</i> = 1/(1 + 0.5) = 0.667. The segment actually had <i>y</i> = 4.
+EB = 0.667 × 1.0 + 0.333 × 4 = <b>2.0</b>. The estimate is pulled from 4 toward the model's 1.0: that pull is called <b>shrinkage</b>. It removes most of the luck.</div>
+
+<h3>What it bought us</h3>
+<ul>
+<li>EB beat ranking by raw crash history at the top of the list by 5 to 8 percentage points of later serious crashes captured, on held-out 2023 to 2025 data.</li>
+<li>EB is the ranking used for budget allocation (page 7). Its advantage over raw history there is clear for large budgets but not for small ones; the intervals tell us that, as page 5 explains.</li>
+</ul>
+
+<h3>Testing many places at once</h3>
+<p>If you test thousands of places for "hot spots" at the 5% level, about 5% will look hot by chance alone. The <b>Benjamini–Hochberg</b> procedure controls the <i>false discovery rate</i>: sort the <i>m</i> p-values
+<i>p</i><sub>(1)</sub> ≤ … ≤ <i>p</i><sub>(<i>m</i>)</sub> and flag every place up to the largest <i>k</i> with <i>p</i><sub>(<i>k</i>)</sub> ≤ (<i>k</i>/<i>m</i>) <i>q</i>. We use it with the Getis–Ord <i>G</i>* statistic, which compares the crash count in a neighbourhood to what random placement would give.</p>
+
+<div class="ours"><b>Why this matters here.</b> Our whole question is where to spend money. If rankings mostly reflect luck, the money goes to places that would have improved anyway.
+Everything we do about evaluation, including holding out future years, exists to keep luck from being mistaken for risk.</div>
+<div class="foot">Page 4 of 7</div>
+</div>
+
+<!-- ============================ PAGE 5 ============================ -->
+<div class="page">
+<h2>5. Uncertainty, cause and effect, and optimisation</h2>
+
+<h3>The bootstrap: how much would our answer change with different luck?</h3>
+<p>We have one dataset but want to know how much a statistic <i>T</i> (a ratio, a slope, a difference between strategies) would vary. Treat the data as a stand-in for the population:</p>
+<ol style="margin:2px 0 6px 0;padding-left:20px">
+<li>Resample the units with replacement, giving a new dataset of the same size.</li>
+<li>Recompute <i>T</i> on it, giving <i>T</i>*<sub>1</sub>. Repeat <i>B</i> times (we use 1,000 to 2,000).</li>
+<li>The 2.5th and 97.5th percentiles of <i>T</i>*<sub>1</sub>, …, <i>T</i>*<sub><i>B</i></sub> form a 95% interval.</li>
+</ol>
+<p>We resample <b>whole streets</b>, not single segments, because segments on one street move together. To compare two strategies we rescore both on the <i>same</i> resample and look at the ratio,
+so the luck common to both cancels (a <b>paired</b> comparison). If a ratio's interval includes 1, we cannot tell the strategies apart.</p>
+
+<h3>Cause and effect: difference-in-differences</h3>
+<p>Did a countermeasure reduce crashes? Compare how crashes <i>changed</i> on treated streets with how they changed on similar untreated streets. In our version the effect is a ratio of ratios:</p>
+<div class="eq">effect = ( <i>T</i><sub>after</sub> / <i>T</i><sub>before</sub> ) / ( <i>C</i><sub>after</sub> / <i>C</i><sub>before</sub> )</div>
+<p>A value below 1 means treated streets improved relative to controls. It is valid only if the two groups would have moved in parallel without the treatment. Because projects are built where crashes were high (regression to the mean again),
+we match treated and control streets on <i>prior</i> crashes and road class. Even then it is observational. A <b>correlation is not a cause</b>: the pedestrian slope of 0.41 does not show that adding walkers makes a street safer.</p>
+
+<h3>Optimisation: spending a fixed budget</h3>
+<p>Let option (<i>i</i>, <i>j</i>) be treatment <i>j</i> at segment <i>i</i>, with cost <i>c</i><sub><i>ij</i></sub> and benefit <i>b</i><sub><i>ij</i></sub> = CRF<sub><i>j</i></sub> × expected serious crashes at segment <i>i</i>
+(the <b>crash reduction factor</b> CRF is a published percentage, 35% for the fixes we use). Choose <i>x</i><sub><i>ij</i></sub> ∈ {0, 1} to</p>
+<div class="eq">maximise Σ<sub><i>i,j</i></sub> <i>b</i><sub><i>ij</i></sub> <i>x</i><sub><i>ij</i></sub>  &nbsp; subject to  &nbsp; Σ<sub><i>i,j</i></sub> <i>c</i><sub><i>ij</i></sub> <i>x</i><sub><i>ij</i></sub> ≤ <i>B</i>,  &nbsp; Σ<sub><i>j</i></sub> <i>x</i><sub><i>ij</i></sub> ≤ 1 for every <i>i</i></div>
+<p>This is a <b>multiple-choice knapsack</b>, an integer linear program. It is hard in general, but a solver (HiGHS) finds the exact optimum for our ~12,000 options. We then score each strategy on crashes that
+happened <i>after</i> it chose, so we compare "what we would have bought" with "what actually happened", not with what the model predicted.</p>
+
+<div class="box"><b>Check yourself (good first exercises).</b> (1) Derive the normal equations from <i>L</i>(<i>β</i>) = ‖<i>y</i> − <i>Xβ</i>‖². (2) Show that maximising the Poisson log-likelihood with log link gives the score equation Σ(<i>y</i><sub><i>i</i></sub> − <i>μ</i><sub><i>i</i></sub>)<i>x</i><sub><i>i</i></sub> = 0. (3) Show EB = <i>wμ</i> + (1 − <i>w</i>)<i>y</i> follows from a gamma prior on the rate with mean <i>μ</i> and variance <i>αμ</i><sup>2</sup>.
+(4) Why is the bootstrap percentile interval for a ratio not symmetric around the estimate?</div>
+<div class="foot">Page 5 of 7</div>
+</div>
+
+<!-- ============================ PAGE 6 ============================ -->
+<div class="page">
+<h2>6. What we are doing: three levels</h2>
+
+<h3>High level: the question and why it is worth a paper</h3>
+<p><b>Where do serious crashes (people killed or seriously injured) concentrate in Alameda County, who bears them, and which affordable fixes would prevent the most?</b>
+The output is a research paper plus a public, reproducible code repository, and an OSF registration so our methods are time-stamped.
+It is original because Alameda CTC's 2024 High-Injury Network (HIN) and Proactive Safety Network (PSN) were never tested against later crashes, nothing weighs destinations by exposure,
+and no one scores budget allocations on what actually happened afterward. We test all three out of sample on 2023 to 2025 crashes.</p>
+
+<h3>Medium level: five parts, each a question with a method</h3>
+<table>
+<tr><th style="width:17%">Part</th><th style="width:35%">Question</th><th style="width:48%">Method (maths from sections 2 to 5)</th></tr>
+<tr><td>1 Baseline</td><td>What happened 2016 to 2025, when, to whom?</td><td>Counts and rates; Getis–Ord hot spots with Benjamini–Hochberg.</td></tr>
+<tr><td>2 Hot spots and destinations</td><td>Do HIN/PSN find later serious crashes? Are children hurt near schools on school days? Is exposure (people walking) driving crash counts?</td><td>Share of later KSI per road length vs baselines; Poisson IRRs with street-clustered errors; school-year vs summer with placebo hours; log-log slope on counts.</td></tr>
+<tr><td>3 Countermeasures</td><td>Did bike lanes (and later signs, signals) change crashes?</td><td>Matched difference-in-differences, cell bootstrap.</td></tr>
+<tr><td>4 Prediction</td><td>Which segments will have serious crashes?</td><td>Poisson regression and boosting with exposure offset; Empirical Bayes; forward-in-time and spatial holdout.</td></tr>
+<tr><td>5 Allocation</td><td>Given a budget, what should we fix where?</td><td>Multiple-choice knapsack; scored on 2023 to 2025; bootstrap intervals.</td></tr>
+</table>
+
+<h3>Low level: how it is built and what you will touch</h3>
+<ul>
+<li><b>Data flow.</b> 73,565 injury and fatal crashes (CHP SWITRS via UC Berkeley TIMS, linked to CCRS) → geocoded points → snapped to 32,462 quarter-mile segments → a segment × year panel → joined with traffic volume (HPMS), OpenStreetMap, Census, schools, hospitals, transit, bike/pedestrian counts.</li>
+<li><b>Code.</b> One script per analysis, run as <span class="m">python -m analysis.&lt;name&gt;</span> (for example <span class="m">school_test</span>, <span class="m">model</span>, <span class="m">allocate_bootstrap</span>). Each script's header states its design <i>before</i> the results; each writes a table to <span class="m">analysis/results/</span> and is explained in a file in <span class="m">docs/</span>.</li>
+<li><b>Definitions.</b> KSI = TIMS severity 1 or 2. Surface streets only (freeways excluded). HIN is a network of the streets with the most pedestrian and bicycle serious crashes; PSN scores streets by traits and nearby destinations with no crash data.</li>
+<li><b>Hard rules.</b> The repo is public: no restricted data (the Alameda CTC travel-model volumes we may receive, and the HIN/PSN lines) is ever committed. Treatment costs in the allocation are <i>assumptions</i>, so dollar figures are not findings. Every number in writing must come from a committed result file.</li>
+</ul>
+<div class="foot">Page 6 of 7</div>
+</div>
+
+<!-- ============================ PAGE 7 ============================ -->
+<div class="page">
+<h2>7. What we have done, and what we are doing now</h2>
+
+<h3>Done (all committed in the public repository)</h3>
+<table>
+<tr><th style="width:23%">Analysis</th><th style="width:57%">Finding</th><th style="width:20%">Confidence</th></tr>
+<tr><td>Baseline (Part 1)</td><td>73,565 injury/fatal crashes; surface-street serious crashes rose from 334 to 362 a year; night is 22% of injury crashes but 35% of serious ones; equity-priority tracts have 1.57 times the serious-crash rate.</td><td>Solid (descriptive)</td></tr>
+<tr><td>HIN and PSN out of sample</td><td>HIN holds 52.6% of later pedestrian/bike serious crashes on 10.8% of road length; the PSN adds little on streets with no crash history (IRR ≈ 1.17, not significant after controls).</td><td>Moderate</td></tr>
+<tr><td>Schools</td><td>Child pedestrian/bike commute-hour crashes near schools are 5.8 times higher in session than in summer; placebo hours 1.1 to 1.4 times. Burden, not per-trip risk.</td><td>Solid; one district calendar</td></tr>
+<tr><td>Prediction model</td><td>Road and exposure inputs beat road class alone (31% vs 18% of serious crashes in the top 5% of length); EB beats raw history by 5 to 8 points.</td><td>Moderate</td></tr>
+<tr><td>Bike lanes (Oakland)</td><td>Ratio 1.14 (0.96 to 1.35); changes sign when one year-cohort is dropped. No cycling counts.</td><td>Inconclusive</td></tr>
+<tr><td>Hospitals, nursing homes</td><td>No excess crashes near hospitals (IRR 0.99); nursing homes +19% with no distance fade, so an area effect.</td><td>Moderate</td></tr>
+<tr><td>Exposure (2024 counts)</td><td>Pedestrian crashes rise with people at slope 0.41 (0.24 to 0.57): busiest sites have 30 times the walkers but about 4 times the crashes.</td><td>Moderate; 120 sites</td></tr>
+<tr><td>Allocation + bootstrap</td><td>Model-based beats raw-history optimisation by 26% at $15M and 32% at $50M (intervals above 1) but not at $1M or $5M; restricting to the HIN costs a third at $50M. Costs are assumed.</td><td>Demo; ratios usable</td></tr>
+</table>
+
+<h3>Doing now</h3>
+<ul>
+<li><b>OSF registration</b> being finalised: finished analyses recorded as "run before registering"; four analyses not yet run are preregistered (other count years, allocation on two more train/test splits, corridor speeds, and a stop-sign/signal study only if dated data are found).</li>
+<li><b>Waiting on others:</b> Alameda CTC travel-model volumes; a reply from Oakland's transportation department on real treatment costs. INRIX speed data was denied.</li>
+<li><b>Open gaps:</b> real treatment unit costs; district school calendars beyond Fremont; stop-sign/signal data; exposure for all 32,462 segments (only 120 count sites exist).</li>
+</ul>
+
+<h3>Where you come in</h3>
+<ul>
+<li>Week 1: read sections 1 to 5, then <span class="m">docs/PAPER_OUTLINE.md</span>; rerun one analysis from a clean clone and report anything that does not reproduce.</li>
+<li>Write a one-page critique of the bike-lane design and the allocation comparison. Try to break them.</li>
+<li>Collect school district calendars (public); draft methods sections from the docs, copying numbers only from committed files.</li>
+</ul>
+<div class="warn"><b>Honest status.</b> We have solid descriptive work and some fragile causal results. The strongest claims are the school-day burden, the out-of-sample test of the official networks, and the allocation ranking at large budgets.
+Bike lanes and anything in dollars are not yet claims.</div>
+<div class="foot">Page 7 of 7</div>
+</div>
+
+</body></html>

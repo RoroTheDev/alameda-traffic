@@ -1,0 +1,5 @@
+sample,evaluation,metric,without_speed,with_speed,difference,ci_low,ci_high
+"2666 matched arterial segments, PM-peak 2024 speed",temporal,Poisson deviance (without - with; >0 means speed helps),1666.7831,1663.5969,3.1862,-10.2666,15.8158
+"2666 matched arterial segments, PM-peak 2024 speed",temporal,share of KSI on top 5% of length (with - without; >0 means speed helps),0.1481,0.1412,-0.0068,-0.0255,0.0253
+"2666 matched arterial segments, PM-peak 2024 speed",spatial,Poisson deviance (without - with; >0 means speed helps),1749.7205,5.304930418125198e+103,-5.304930418125198e+103,-7.604379978050718e+103,-3.27485154522465e+103
+"2666 matched arterial segments, PM-peak 2024 speed",spatial,share of KSI on top 5% of length (with - without; >0 means speed helps),0.1139,0.082,-0.0319,-0.0954,0.0356
