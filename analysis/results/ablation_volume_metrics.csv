@@ -1,0 +1,181 @@
+variant,evaluation,outcome,method,test_crashes,captured_top5pct_length,captured_top10pct_length,spearman,pred_vs_obs,poisson_deviance,poisson_deviance_arterial,arterial_captured_top5pct,arterial_captured_top10pct
+A: HPMS,temporal,inj,history (own past crashes),12195,0.442,0.615,0.588,1.08,,,,
+A: HPMS,temporal,inj,GLM + city,12195,0.313,0.478,0.482,1.08,26339.2,15653.0,0.182,0.306
+A: HPMS,temporal,inj,GBM + city,12195,0.35,0.513,0.495,1.08,23361.5,13555.9,0.229,0.358
+A: HPMS,temporal,inj,EB (GLM + city),12195,0.443,0.614,0.515,1.08,,,0.307,0.451
+A: HPMS,temporal,inj,EB (GBM + city),12195,0.445,0.619,0.518,1.1,,,0.308,0.451
+A: HPMS,temporal,inj,road class only,12195,0.177,0.436,0.426,1.08,,,,
+A: HPMS,temporal,ksi,history (own past crashes),1066,0.28,0.508,0.247,0.92,,,,
+A: HPMS,temporal,ksi,GLM + city,1066,0.308,0.473,0.218,0.92,5300.9,3390.2,0.172,0.297
+A: HPMS,temporal,ksi,GBM + city,1066,0.313,0.477,0.221,0.92,5192.8,3360.6,0.192,0.309
+A: HPMS,temporal,ksi,EB (GLM + city),1066,0.343,0.511,0.221,0.92,,,0.246,0.348
+A: HPMS,temporal,ksi,EB (GBM + city),1066,0.356,0.506,0.224,0.95,,,0.231,0.345
+A: HPMS,temporal,ksi,road class only,1066,0.177,0.429,0.193,0.92,,,,
+A: HPMS,temporal,pb,history (own past crashes),479,0.426,0.555,0.222,,,,,
+A: HPMS,temporal,pb,GLM + city,479,0.355,0.537,0.156,,6693.0,4344.7,0.226,0.346
+A: HPMS,temporal,pb,GBM + city,479,0.363,0.562,0.16,,6621.3,4130.1,0.247,0.38
+A: HPMS,temporal,pb,EB (GLM + city),479,0.453,0.603,0.16,,,,0.325,0.479
+A: HPMS,temporal,pb,EB (GBM + city),479,0.441,0.601,0.163,,,,0.346,0.476
+A: HPMS,temporal,pb,road class only,479,0.148,0.392,0.128,,,,,
+A: HPMS,spatial + temporal,inj,history (own past crashes),12195,0.442,0.615,0.588,1.08,,,,
+A: HPMS,spatial + temporal,inj,GLM + city,12195,0.301,0.466,0.479,1.09,27163.7,16314.1,0.172,0.293
+A: HPMS,spatial + temporal,inj,GBM + city,12195,0.299,0.472,0.485,1.03,26477.2,15963.9,0.162,0.282
+A: HPMS,spatial + temporal,inj,EB (GLM + city),12195,0.441,0.614,0.513,1.07,,,0.307,0.451
+A: HPMS,spatial + temporal,inj,EB (GBM + city),12195,0.442,0.617,0.516,1.06,,,0.305,0.452
+A: HPMS,spatial + temporal,inj,road class only,12195,0.177,0.436,0.426,1.08,,,,
+A: HPMS,spatial + temporal,ksi,history (own past crashes),1066,0.28,0.508,0.247,0.92,,,,
+A: HPMS,spatial + temporal,ksi,GLM + city,1066,0.299,0.462,0.216,0.95,5378.4,3457.8,0.154,0.279
+A: HPMS,spatial + temporal,ksi,GBM + city,1066,0.27,0.443,0.217,0.9,5370.7,3501.9,0.157,0.26
+A: HPMS,spatial + temporal,ksi,EB (GLM + city),1066,0.329,0.508,0.22,0.92,,,0.237,0.342
+A: HPMS,spatial + temporal,ksi,EB (GBM + city),1066,0.335,0.486,0.222,0.9,,,0.231,0.338
+A: HPMS,spatial + temporal,ksi,road class only,1066,0.177,0.429,0.193,0.92,,,,
+A: HPMS,spatial + temporal,pb,history (own past crashes),479,0.426,0.555,0.222,,,,,
+A: HPMS,spatial + temporal,pb,GLM + city,479,0.322,0.501,0.156,,6552.3,4264.0,0.217,0.355
+A: HPMS,spatial + temporal,pb,GBM + city,479,0.303,0.528,0.158,,6458.4,4003.6,0.208,0.334
+A: HPMS,spatial + temporal,pb,EB (GLM + city),479,0.449,0.589,0.161,,,,0.328,0.473
+A: HPMS,spatial + temporal,pb,EB (GBM + city),479,0.449,0.597,0.162,,,,0.337,0.464
+A: HPMS,spatial + temporal,pb,road class only,479,0.148,0.392,0.128,,,,,
+B: AlaCC,temporal,inj,history (own past crashes),12195,0.442,0.615,0.588,1.08,,,,
+B: AlaCC,temporal,inj,GLM + city,12195,0.329,0.497,0.482,1.08,25829.2,15043.3,0.187,0.326
+B: AlaCC,temporal,inj,GBM + city,12195,0.362,0.53,0.496,1.08,22649.7,13043.7,0.24,0.36
+B: AlaCC,temporal,inj,EB (GLM + city),12195,0.441,0.617,0.513,1.08,,,0.308,0.455
+B: AlaCC,temporal,inj,EB (GBM + city),12195,0.443,0.617,0.518,1.09,,,0.307,0.454
+B: AlaCC,temporal,inj,road class only,12195,0.177,0.436,0.426,1.08,,,,
+B: AlaCC,temporal,ksi,history (own past crashes),1066,0.28,0.508,0.247,0.92,,,,
+B: AlaCC,temporal,ksi,GLM + city,1066,0.314,0.485,0.217,0.92,5310.7,3369.5,0.191,0.307
+B: AlaCC,temporal,ksi,GBM + city,1066,0.326,0.488,0.222,0.93,5132.5,3283.9,0.208,0.347
+B: AlaCC,temporal,ksi,EB (GLM + city),1066,0.35,0.503,0.22,0.92,,,0.245,0.351
+B: AlaCC,temporal,ksi,EB (GBM + city),1066,0.356,0.515,0.224,0.95,,,0.226,0.345
+B: AlaCC,temporal,ksi,road class only,1066,0.177,0.429,0.193,0.92,,,,
+B: AlaCC,temporal,pb,history (own past crashes),479,0.426,0.555,0.222,,,,,
+B: AlaCC,temporal,pb,GLM + city,479,0.338,0.534,0.155,,6700.8,4344.2,0.244,0.34
+B: AlaCC,temporal,pb,GBM + city,479,0.353,0.553,0.159,,6638.9,4244.6,0.256,0.373
+B: AlaCC,temporal,pb,EB (GLM + city),479,0.455,0.612,0.16,,,,0.316,0.476
+B: AlaCC,temporal,pb,EB (GBM + city),479,0.443,0.603,0.162,,,,0.319,0.47
+B: AlaCC,temporal,pb,road class only,479,0.148,0.392,0.128,,,,,
+B: AlaCC,spatial + temporal,inj,history (own past crashes),12195,0.442,0.615,0.588,1.08,,,,
+B: AlaCC,spatial + temporal,inj,GLM + city,12195,0.318,0.485,0.479,1.09,26570.6,15629.3,0.177,0.311
+B: AlaCC,spatial + temporal,inj,GBM + city,12195,0.307,0.497,0.486,1.05,25673.0,15251.6,0.172,0.299
+B: AlaCC,spatial + temporal,inj,EB (GLM + city),12195,0.441,0.615,0.512,1.07,,,0.307,0.454
+B: AlaCC,spatial + temporal,inj,EB (GBM + city),12195,0.441,0.616,0.515,1.07,,,0.305,0.451
+B: AlaCC,spatial + temporal,inj,road class only,12195,0.177,0.436,0.426,1.08,,,,
+B: AlaCC,spatial + temporal,ksi,history (own past crashes),1066,0.28,0.508,0.247,0.92,,,,
+B: AlaCC,spatial + temporal,ksi,GLM + city,1066,0.299,0.467,0.215,0.96,5374.5,3424.8,0.176,0.302
+B: AlaCC,spatial + temporal,ksi,GBM + city,1066,0.297,0.462,0.218,0.89,5305.8,3417.1,0.164,0.289
+B: AlaCC,spatial + temporal,ksi,EB (GLM + city),1066,0.345,0.503,0.219,0.93,,,0.24,0.348
+B: AlaCC,spatial + temporal,ksi,EB (GBM + city),1066,0.333,0.491,0.222,0.89,,,0.234,0.338
+B: AlaCC,spatial + temporal,ksi,road class only,1066,0.177,0.429,0.193,0.92,,,,
+B: AlaCC,spatial + temporal,pb,history (own past crashes),479,0.426,0.555,0.222,,,,,
+B: AlaCC,spatial + temporal,pb,GLM + city,479,0.326,0.499,0.155,,6576.6,4268.5,0.229,0.328
+B: AlaCC,spatial + temporal,pb,GBM + city,479,0.305,0.528,0.157,,6437.7,4090.1,0.217,0.31
+B: AlaCC,spatial + temporal,pb,EB (GLM + city),479,0.451,0.605,0.16,,,,0.325,0.479
+B: AlaCC,spatial + temporal,pb,EB (GBM + city),479,0.445,0.595,0.162,,,,0.325,0.47
+B: AlaCC,spatial + temporal,pb,road class only,479,0.148,0.392,0.128,,,,,
+C: both,temporal,inj,history (own past crashes),12195,0.442,0.615,0.588,1.08,,,,
+C: both,temporal,inj,GLM + city,12195,0.326,0.498,0.482,1.08,25800.7,15064.3,0.185,0.324
+C: both,temporal,inj,GBM + city,12195,0.358,0.525,0.496,1.08,22911.5,13248.4,0.23,0.363
+C: both,temporal,inj,EB (GLM + city),12195,0.442,0.616,0.513,1.08,,,0.307,0.455
+C: both,temporal,inj,EB (GBM + city),12195,0.444,0.618,0.518,1.09,,,0.308,0.454
+C: both,temporal,inj,road class only,12195,0.177,0.436,0.426,1.08,,,,
+C: both,temporal,ksi,history (own past crashes),1066,0.28,0.508,0.247,0.92,,,,
+C: both,temporal,ksi,GLM + city,1066,0.312,0.48,0.217,0.92,5297.9,3375.2,0.188,0.304
+C: both,temporal,ksi,GBM + city,1066,0.33,0.489,0.222,0.93,5132.1,3300.8,0.217,0.347
+C: both,temporal,ksi,EB (GLM + city),1066,0.351,0.502,0.22,0.92,,,0.244,0.35
+C: both,temporal,ksi,EB (GBM + city),1066,0.355,0.514,0.224,0.95,,,0.23,0.35
+C: both,temporal,ksi,road class only,1066,0.177,0.429,0.193,0.92,,,,
+C: both,temporal,pb,history (own past crashes),479,0.426,0.555,0.222,,,,,
+C: both,temporal,pb,GLM + city,479,0.344,0.53,0.156,,6692.0,4343.4,0.25,0.334
+C: both,temporal,pb,GBM + city,479,0.376,0.555,0.16,,6628.5,4256.6,0.259,0.355
+C: both,temporal,pb,EB (GLM + city),479,0.457,0.616,0.16,,,,0.322,0.482
+C: both,temporal,pb,EB (GBM + city),479,0.443,0.601,0.162,,,,0.325,0.464
+C: both,temporal,pb,road class only,479,0.148,0.392,0.128,,,,,
+C: both,spatial + temporal,inj,history (own past crashes),12195,0.442,0.615,0.588,1.08,,,,
+C: both,spatial + temporal,inj,GLM + city,12195,0.319,0.486,0.48,1.09,26566.1,15672.4,0.176,0.311
+C: both,spatial + temporal,inj,GBM + city,12195,0.312,0.501,0.488,1.04,25431.8,15087.3,0.173,0.292
+C: both,spatial + temporal,inj,EB (GLM + city),12195,0.442,0.615,0.512,1.07,,,0.307,0.454
+C: both,spatial + temporal,inj,EB (GBM + city),12195,0.441,0.617,0.516,1.07,,,0.306,0.455
+C: both,spatial + temporal,inj,road class only,12195,0.177,0.436,0.426,1.08,,,,
+C: both,spatial + temporal,ksi,history (own past crashes),1066,0.28,0.508,0.247,0.92,,,,
+C: both,spatial + temporal,ksi,GLM + city,1066,0.304,0.464,0.216,0.95,5369.5,3436.8,0.173,0.293
+C: both,spatial + temporal,ksi,GBM + city,1066,0.283,0.454,0.219,0.89,5288.8,3424.0,0.165,0.287
+C: both,spatial + temporal,ksi,EB (GLM + city),1066,0.342,0.508,0.219,0.92,,,0.24,0.35
+C: both,spatial + temporal,ksi,EB (GBM + city),1066,0.34,0.504,0.223,0.89,,,0.244,0.333
+C: both,spatial + temporal,ksi,road class only,1066,0.177,0.429,0.193,0.92,,,,
+C: both,spatial + temporal,pb,history (own past crashes),479,0.426,0.555,0.222,,,,,
+C: both,spatial + temporal,pb,GLM + city,479,0.322,0.514,0.155,,6551.0,4268.7,0.226,0.334
+C: both,spatial + temporal,pb,GBM + city,479,0.322,0.516,0.157,,6449.7,4124.0,0.211,0.307
+C: both,spatial + temporal,pb,EB (GLM + city),479,0.449,0.603,0.16,,,,0.325,0.473
+C: both,spatial + temporal,pb,EB (GBM + city),479,0.447,0.593,0.162,,,,0.325,0.464
+C: both,spatial + temporal,pb,road class only,479,0.148,0.392,0.128,,,,,
+D: no volume,temporal,inj,history (own past crashes),12195,0.442,0.615,0.588,1.08,,,,
+D: no volume,temporal,inj,GLM + city,12195,0.318,0.48,0.482,1.08,26399.8,15653.8,0.182,0.311
+D: no volume,temporal,inj,GBM + city,12195,0.349,0.513,0.493,1.08,23619.8,13695.9,0.221,0.349
+D: no volume,temporal,inj,EB (GLM + city),12195,0.443,0.615,0.514,1.08,,,0.307,0.452
+D: no volume,temporal,inj,EB (GBM + city),12195,0.444,0.618,0.517,1.1,,,0.307,0.452
+D: no volume,temporal,inj,road class only,12195,0.177,0.436,0.426,1.08,,,,
+D: no volume,temporal,ksi,history (own past crashes),1066,0.28,0.508,0.247,0.92,,,,
+D: no volume,temporal,ksi,GLM + city,1066,0.302,0.477,0.217,0.92,5315.7,3386.1,0.168,0.298
+D: no volume,temporal,ksi,GBM + city,1066,0.318,0.481,0.221,0.92,5190.2,3334.4,0.189,0.323
+D: no volume,temporal,ksi,EB (GLM + city),1066,0.341,0.508,0.221,0.92,,,0.247,0.348
+D: no volume,temporal,ksi,EB (GBM + city),1066,0.346,0.5,0.223,0.95,,,0.232,0.354
+D: no volume,temporal,ksi,road class only,1066,0.177,0.429,0.193,0.92,,,,
+D: no volume,temporal,pb,history (own past crashes),479,0.426,0.555,0.222,,,,,
+D: no volume,temporal,pb,GLM + city,479,0.338,0.524,0.156,,6703.5,4346.2,0.226,0.346
+D: no volume,temporal,pb,GBM + city,479,0.37,0.539,0.159,,6630.2,4152.1,0.259,0.395
+D: no volume,temporal,pb,EB (GLM + city),479,0.451,0.597,0.16,,,,0.322,0.479
+D: no volume,temporal,pb,EB (GBM + city),479,0.436,0.595,0.162,,,,0.331,0.47
+D: no volume,temporal,pb,road class only,479,0.148,0.392,0.128,,,,,
+D: no volume,spatial + temporal,inj,history (own past crashes),12195,0.442,0.615,0.588,1.08,,,,
+D: no volume,spatial + temporal,inj,GLM + city,12195,0.3,0.465,0.478,1.09,27213.7,16300.2,0.169,0.299
+D: no volume,spatial + temporal,inj,GBM + city,12195,0.292,0.475,0.484,1.04,26526.1,15951.3,0.149,0.276
+D: no volume,spatial + temporal,inj,EB (GLM + city),12195,0.442,0.614,0.513,1.08,,,0.307,0.45
+D: no volume,spatial + temporal,inj,EB (GBM + city),12195,0.442,0.617,0.516,1.07,,,0.307,0.453
+D: no volume,spatial + temporal,inj,road class only,12195,0.177,0.436,0.426,1.08,,,,
+D: no volume,spatial + temporal,ksi,history (own past crashes),1066,0.28,0.508,0.247,0.92,,,,
+D: no volume,spatial + temporal,ksi,GLM + city,1066,0.29,0.457,0.216,0.96,5385.1,3446.6,0.154,0.285
+D: no volume,spatial + temporal,ksi,GBM + city,1066,0.281,0.438,0.217,0.91,5393.5,3508.4,0.146,0.264
+D: no volume,spatial + temporal,ksi,EB (GLM + city),1066,0.329,0.505,0.22,0.93,,,0.237,0.341
+D: no volume,spatial + temporal,ksi,EB (GBM + city),1066,0.324,0.492,0.221,0.9,,,0.23,0.33
+D: no volume,spatial + temporal,ksi,road class only,1066,0.177,0.429,0.193,0.92,,,,
+D: no volume,spatial + temporal,pb,history (own past crashes),479,0.426,0.555,0.222,,,,,
+D: no volume,spatial + temporal,pb,GLM + city,479,0.322,0.499,0.155,,6586.9,4265.1,0.223,0.358
+D: no volume,spatial + temporal,pb,GBM + city,479,0.307,0.528,0.157,,6436.3,3947.1,0.193,0.328
+D: no volume,spatial + temporal,pb,EB (GLM + city),479,0.451,0.587,0.16,,,,0.328,0.482
+D: no volume,spatial + temporal,pb,EB (GBM + city),479,0.453,0.599,0.162,,,,0.334,0.464
+D: no volume,spatial + temporal,pb,road class only,479,0.148,0.392,0.128,,,,,
+B-u: AlaCC incl. uncertain,temporal,inj,history (own past crashes),12195,0.442,0.615,0.588,1.08,,,,
+B-u: AlaCC incl. uncertain,temporal,inj,GLM + city,12195,0.327,0.496,0.482,1.08,25861.8,15078.8,0.189,0.326
+B-u: AlaCC incl. uncertain,temporal,inj,GBM + city,12195,0.357,0.531,0.497,1.08,22693.8,13077.7,0.228,0.361
+B-u: AlaCC incl. uncertain,temporal,inj,EB (GLM + city),12195,0.441,0.616,0.513,1.08,,,0.306,0.455
+B-u: AlaCC incl. uncertain,temporal,inj,EB (GBM + city),12195,0.444,0.618,0.518,1.09,,,0.307,0.454
+B-u: AlaCC incl. uncertain,temporal,inj,road class only,12195,0.177,0.436,0.426,1.08,,,,
+B-u: AlaCC incl. uncertain,temporal,ksi,history (own past crashes),1066,0.28,0.508,0.247,0.92,,,,
+B-u: AlaCC incl. uncertain,temporal,ksi,GLM + city,1066,0.316,0.481,0.216,0.92,5314.7,3372.7,0.191,0.312
+B-u: AlaCC incl. uncertain,temporal,ksi,GBM + city,1066,0.326,0.495,0.222,0.93,5128.3,3275.5,0.218,0.351
+B-u: AlaCC incl. uncertain,temporal,ksi,EB (GLM + city),1066,0.352,0.503,0.22,0.92,,,0.244,0.352
+B-u: AlaCC incl. uncertain,temporal,ksi,EB (GBM + city),1066,0.355,0.505,0.224,0.95,,,0.232,0.354
+B-u: AlaCC incl. uncertain,temporal,ksi,road class only,1066,0.177,0.429,0.193,0.92,,,,
+B-u: AlaCC incl. uncertain,temporal,pb,history (own past crashes),479,0.426,0.555,0.222,,,,,
+B-u: AlaCC incl. uncertain,temporal,pb,GLM + city,479,0.338,0.532,0.155,,6703.5,4348.0,0.244,0.34
+B-u: AlaCC incl. uncertain,temporal,pb,GBM + city,479,0.353,0.562,0.159,,6650.4,4227.9,0.253,0.373
+B-u: AlaCC incl. uncertain,temporal,pb,EB (GLM + city),479,0.457,0.61,0.16,,,,0.322,0.476
+B-u: AlaCC incl. uncertain,temporal,pb,EB (GBM + city),479,0.441,0.597,0.162,,,,0.322,0.485
+B-u: AlaCC incl. uncertain,temporal,pb,road class only,479,0.148,0.392,0.128,,,,,
+B-u: AlaCC incl. uncertain,spatial + temporal,inj,history (own past crashes),12195,0.442,0.615,0.588,1.08,,,,
+B-u: AlaCC incl. uncertain,spatial + temporal,inj,GLM + city,12195,0.319,0.481,0.479,1.09,26604.1,15665.9,0.176,0.31
+B-u: AlaCC incl. uncertain,spatial + temporal,inj,GBM + city,12195,0.308,0.496,0.486,1.04,25606.6,15147.8,0.174,0.298
+B-u: AlaCC incl. uncertain,spatial + temporal,inj,EB (GLM + city),12195,0.441,0.615,0.512,1.07,,,0.307,0.455
+B-u: AlaCC incl. uncertain,spatial + temporal,inj,EB (GBM + city),12195,0.442,0.617,0.515,1.07,,,0.306,0.452
+B-u: AlaCC incl. uncertain,spatial + temporal,inj,road class only,12195,0.177,0.436,0.426,1.08,,,,
+B-u: AlaCC incl. uncertain,spatial + temporal,ksi,history (own past crashes),1066,0.28,0.508,0.247,0.92,,,,
+B-u: AlaCC incl. uncertain,spatial + temporal,ksi,GLM + city,1066,0.295,0.465,0.215,0.96,5379.6,3429.0,0.174,0.299
+B-u: AlaCC incl. uncertain,spatial + temporal,ksi,GBM + city,1066,0.281,0.462,0.218,0.9,5313.1,3422.8,0.158,0.283
+B-u: AlaCC incl. uncertain,spatial + temporal,ksi,EB (GLM + city),1066,0.345,0.498,0.219,0.93,,,0.235,0.347
+B-u: AlaCC incl. uncertain,spatial + temporal,ksi,EB (GBM + city),1066,0.34,0.508,0.222,0.9,,,0.235,0.343
+B-u: AlaCC incl. uncertain,spatial + temporal,ksi,road class only,1066,0.177,0.429,0.193,0.92,,,,
+B-u: AlaCC incl. uncertain,spatial + temporal,pb,history (own past crashes),479,0.426,0.555,0.222,,,,,
+B-u: AlaCC incl. uncertain,spatial + temporal,pb,GLM + city,479,0.328,0.503,0.155,,6581.3,4272.6,0.229,0.334
+B-u: AlaCC incl. uncertain,spatial + temporal,pb,GBM + city,479,0.303,0.534,0.157,,6353.8,4025.4,0.22,0.319
+B-u: AlaCC incl. uncertain,spatial + temporal,pb,EB (GLM + city),479,0.449,0.605,0.16,,,,0.328,0.476
+B-u: AlaCC incl. uncertain,spatial + temporal,pb,EB (GBM + city),479,0.451,0.595,0.162,,,,0.328,0.47
+B-u: AlaCC incl. uncertain,spatial + temporal,pb,road class only,479,0.148,0.392,0.128,,,,,

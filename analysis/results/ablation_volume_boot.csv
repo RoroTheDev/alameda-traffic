@@ -1,0 +1,241 @@
+evaluation,outcome,method,variant_minus_A,metric,diff,ci_low,ci_high
+temporal,ksi,EB (GBM + city),B: AlaCC,captured top 5% of length,0.0,-0.0178,0.0184
+temporal,ksi,EB (GBM + city),B: AlaCC,captured top 10% of length,0.0094,-0.0095,0.0282
+temporal,ksi,EB (GBM + city),C: both,captured top 5% of length,-0.0019,-0.0203,0.0157
+temporal,ksi,EB (GBM + city),C: both,captured top 10% of length,0.0084,-0.0078,0.0271
+temporal,ksi,EB (GBM + city),D: no volume,captured top 5% of length,-0.0103,-0.0245,0.0044
+temporal,ksi,EB (GBM + city),D: no volume,captured top 10% of length,-0.0056,-0.0191,0.0078
+temporal,ksi,EB (GBM + city),B-u: AlaCC incl. uncertain,captured top 5% of length,-0.0019,-0.0175,0.0136
+temporal,ksi,EB (GBM + city),B-u: AlaCC incl. uncertain,captured top 10% of length,-0.0009,-0.0211,0.0196
+temporal,ksi,GBM + city,B: AlaCC,captured top 5% of length,0.0131,-0.0133,0.0393
+temporal,ksi,GBM + city,B: AlaCC,captured top 10% of length,0.0103,-0.0117,0.0322
+temporal,ksi,GBM + city,B: AlaCC,Poisson deviance (lower is better),-60.3,-119.2,-4.8
+temporal,ksi,GBM + city,C: both,captured top 5% of length,0.0169,-0.0083,0.0413
+temporal,ksi,GBM + city,C: both,captured top 10% of length,0.0113,-0.0078,0.0309
+temporal,ksi,GBM + city,C: both,Poisson deviance (lower is better),-60.7,-104.0,-20.1
+temporal,ksi,GBM + city,D: no volume,captured top 5% of length,0.0047,-0.0117,0.0213
+temporal,ksi,GBM + city,D: no volume,captured top 10% of length,0.0038,-0.0171,0.0242
+temporal,ksi,GBM + city,D: no volume,Poisson deviance (lower is better),-2.5,-40.1,30.6
+temporal,ksi,GBM + city,B-u: AlaCC incl. uncertain,captured top 5% of length,0.0122,-0.0133,0.0375
+temporal,ksi,GBM + city,B-u: AlaCC incl. uncertain,captured top 10% of length,0.0178,-0.007,0.0427
+temporal,ksi,GBM + city,B-u: AlaCC incl. uncertain,Poisson deviance (lower is better),-64.5,-122.4,-4.8
+temporal,ksi,EB (GLM + city),B: AlaCC,captured top 5% of length,0.0066,-0.0051,0.018
+temporal,ksi,EB (GLM + city),B: AlaCC,captured top 10% of length,-0.0084,-0.0251,0.0068
+temporal,ksi,EB (GLM + city),C: both,captured top 5% of length,0.0075,-0.0045,0.0199
+temporal,ksi,EB (GLM + city),C: both,captured top 10% of length,-0.0094,-0.0249,0.0049
+temporal,ksi,EB (GLM + city),D: no volume,captured top 5% of length,-0.0019,-0.0108,0.0057
+temporal,ksi,EB (GLM + city),D: no volume,captured top 10% of length,-0.0028,-0.015,0.009
+temporal,ksi,EB (GLM + city),B-u: AlaCC incl. uncertain,captured top 5% of length,0.0084,-0.0031,0.0209
+temporal,ksi,EB (GLM + city),B-u: AlaCC incl. uncertain,captured top 10% of length,-0.0084,-0.0251,0.0068
+temporal,ksi,GLM + city,B: AlaCC,captured top 5% of length,0.0066,-0.0137,0.0291
+temporal,ksi,GLM + city,B: AlaCC,captured top 10% of length,0.0122,-0.0037,0.0285
+temporal,ksi,GLM + city,B: AlaCC,Poisson deviance (lower is better),9.8,-24.0,40.5
+temporal,ksi,GLM + city,C: both,captured top 5% of length,0.0047,-0.0121,0.0245
+temporal,ksi,GLM + city,C: both,captured top 10% of length,0.0075,-0.0069,0.0244
+temporal,ksi,GLM + city,C: both,Poisson deviance (lower is better),-3.0,-30.3,25.4
+temporal,ksi,GLM + city,D: no volume,captured top 5% of length,-0.0056,-0.0209,0.0074
+temporal,ksi,GLM + city,D: no volume,captured top 10% of length,0.0038,-0.0027,0.0113
+temporal,ksi,GLM + city,D: no volume,Poisson deviance (lower is better),14.8,-2.4,33.2
+temporal,ksi,GLM + city,B-u: AlaCC incl. uncertain,captured top 5% of length,0.0084,-0.0118,0.0324
+temporal,ksi,GLM + city,B-u: AlaCC incl. uncertain,captured top 10% of length,0.0084,-0.0069,0.0255
+temporal,ksi,GLM + city,B-u: AlaCC incl. uncertain,Poisson deviance (lower is better),13.8,-21.5,46.5
+temporal,pb,EB (GBM + city),B: AlaCC,captured top 5% of length,0.0021,-0.0146,0.017
+temporal,pb,EB (GBM + city),B: AlaCC,captured top 10% of length,0.0021,-0.0105,0.0135
+temporal,pb,EB (GBM + city),C: both,captured top 5% of length,0.0021,-0.0123,0.0168
+temporal,pb,EB (GBM + city),C: both,captured top 10% of length,0.0,-0.0122,0.0105
+temporal,pb,EB (GBM + city),D: no volume,captured top 5% of length,-0.0042,-0.0176,0.0082
+temporal,pb,EB (GBM + city),D: no volume,captured top 10% of length,-0.0063,-0.0196,0.0063
+temporal,pb,EB (GBM + city),B-u: AlaCC incl. uncertain,captured top 5% of length,0.0,-0.0159,0.0151
+temporal,pb,EB (GBM + city),B-u: AlaCC incl. uncertain,captured top 10% of length,-0.0042,-0.0165,0.0085
+temporal,pb,GBM + city,B: AlaCC,captured top 5% of length,-0.0104,-0.0336,0.0141
+temporal,pb,GBM + city,B: AlaCC,captured top 10% of length,-0.0084,-0.0293,0.0111
+temporal,pb,GBM + city,B: AlaCC,Poisson deviance (lower is better),17.6,-67.5,99.1
+temporal,pb,GBM + city,C: both,captured top 5% of length,0.0125,-0.0095,0.0355
+temporal,pb,GBM + city,C: both,captured top 10% of length,-0.0063,-0.0279,0.0135
+temporal,pb,GBM + city,C: both,Poisson deviance (lower is better),7.3,-69.2,80.6
+temporal,pb,GBM + city,D: no volume,captured top 5% of length,0.0063,-0.0138,0.0243
+temporal,pb,GBM + city,D: no volume,captured top 10% of length,-0.023,-0.0431,-0.0041
+temporal,pb,GBM + city,D: no volume,Poisson deviance (lower is better),9.0,-39.8,54.7
+temporal,pb,GBM + city,B-u: AlaCC incl. uncertain,captured top 5% of length,-0.0104,-0.0361,0.0157
+temporal,pb,GBM + city,B-u: AlaCC incl. uncertain,captured top 10% of length,0.0,-0.0193,0.0184
+temporal,pb,GBM + city,B-u: AlaCC incl. uncertain,Poisson deviance (lower is better),29.2,-51.5,113.6
+temporal,pb,EB (GLM + city),B: AlaCC,captured top 5% of length,0.0021,-0.0155,0.0194
+temporal,pb,EB (GLM + city),B: AlaCC,captured top 10% of length,0.0084,-0.0076,0.0269
+temporal,pb,EB (GLM + city),C: both,captured top 5% of length,0.0042,-0.0164,0.0248
+temporal,pb,EB (GLM + city),C: both,captured top 10% of length,0.0125,-0.0024,0.0295
+temporal,pb,EB (GLM + city),D: no volume,captured top 5% of length,-0.0021,-0.0099,0.0042
+temporal,pb,EB (GLM + city),D: no volume,captured top 10% of length,-0.0063,-0.0171,0.0025
+temporal,pb,EB (GLM + city),B-u: AlaCC incl. uncertain,captured top 5% of length,0.0042,-0.0136,0.0217
+temporal,pb,EB (GLM + city),B-u: AlaCC incl. uncertain,captured top 10% of length,0.0063,-0.0093,0.0253
+temporal,pb,GLM + city,B: AlaCC,captured top 5% of length,-0.0167,-0.0361,0.0023
+temporal,pb,GLM + city,B: AlaCC,captured top 10% of length,-0.0021,-0.0273,0.02
+temporal,pb,GLM + city,B: AlaCC,Poisson deviance (lower is better),7.8,-57.9,75.1
+temporal,pb,GLM + city,C: both,captured top 5% of length,-0.0104,-0.028,0.0075
+temporal,pb,GLM + city,C: both,captured top 10% of length,-0.0063,-0.0273,0.0146
+temporal,pb,GLM + city,C: both,Poisson deviance (lower is better),-1.0,-64.3,62.8
+temporal,pb,GLM + city,D: no volume,captured top 5% of length,-0.0167,-0.0376,0.0
+temporal,pb,GLM + city,D: no volume,captured top 10% of length,-0.0125,-0.0301,0.0024
+temporal,pb,GLM + city,D: no volume,Poisson deviance (lower is better),10.6,-20.5,44.0
+temporal,pb,GLM + city,B-u: AlaCC incl. uncertain,captured top 5% of length,-0.0167,-0.0358,0.0038
+temporal,pb,GLM + city,B-u: AlaCC incl. uncertain,captured top 10% of length,-0.0042,-0.0277,0.0184
+temporal,pb,GLM + city,B-u: AlaCC incl. uncertain,Poisson deviance (lower is better),10.5,-51.6,72.5
+temporal,inj,EB (GBM + city),B: AlaCC,captured top 5% of length,-0.0021,-0.0071,0.0023
+temporal,inj,EB (GBM + city),B: AlaCC,captured top 10% of length,-0.0029,-0.0078,0.0019
+temporal,inj,EB (GBM + city),C: both,captured top 5% of length,-0.0017,-0.0062,0.0025
+temporal,inj,EB (GBM + city),C: both,captured top 10% of length,-0.0016,-0.0059,0.0027
+temporal,inj,EB (GBM + city),D: no volume,captured top 5% of length,-0.0011,-0.0053,0.0025
+temporal,inj,EB (GBM + city),D: no volume,captured top 10% of length,-0.0015,-0.0043,0.0012
+temporal,inj,EB (GBM + city),B-u: AlaCC incl. uncertain,captured top 5% of length,-0.0016,-0.0056,0.0026
+temporal,inj,EB (GBM + city),B-u: AlaCC incl. uncertain,captured top 10% of length,-0.0019,-0.0058,0.0021
+temporal,inj,GBM + city,B: AlaCC,captured top 5% of length,0.0117,-0.0046,0.0287
+temporal,inj,GBM + city,B: AlaCC,captured top 10% of length,0.0166,0.0051,0.0282
+temporal,inj,GBM + city,B: AlaCC,Poisson deviance (lower is better),-711.8,-940.8,-493.1
+temporal,inj,GBM + city,C: both,captured top 5% of length,0.0076,-0.0086,0.0222
+temporal,inj,GBM + city,C: both,captured top 10% of length,0.0124,-0.0,0.0241
+temporal,inj,GBM + city,C: both,Poisson deviance (lower is better),-450.0,-638.8,-242.0
+temporal,inj,GBM + city,D: no volume,captured top 5% of length,-0.0013,-0.0124,0.0117
+temporal,inj,GBM + city,D: no volume,captured top 10% of length,0.0005,-0.0075,0.0089
+temporal,inj,GBM + city,D: no volume,Poisson deviance (lower is better),258.3,128.4,400.1
+temporal,inj,GBM + city,B-u: AlaCC incl. uncertain,captured top 5% of length,0.0069,-0.0102,0.023
+temporal,inj,GBM + city,B-u: AlaCC incl. uncertain,captured top 10% of length,0.0185,0.0066,0.0304
+temporal,inj,GBM + city,B-u: AlaCC incl. uncertain,Poisson deviance (lower is better),-667.7,-867.0,-455.9
+temporal,inj,EB (GLM + city),B: AlaCC,captured top 5% of length,-0.0025,-0.0066,0.0009
+temporal,inj,EB (GLM + city),B: AlaCC,captured top 10% of length,0.0026,-0.0018,0.0072
+temporal,inj,EB (GLM + city),C: both,captured top 5% of length,-0.0015,-0.0047,0.0017
+temporal,inj,EB (GLM + city),C: both,captured top 10% of length,0.0021,-0.0019,0.0062
+temporal,inj,EB (GLM + city),D: no volume,captured top 5% of length,-0.0002,-0.0026,0.0022
+temporal,inj,EB (GLM + city),D: no volume,captured top 10% of length,0.0011,-0.0009,0.0034
+temporal,inj,EB (GLM + city),B-u: AlaCC incl. uncertain,captured top 5% of length,-0.0025,-0.0065,0.001
+temporal,inj,EB (GLM + city),B-u: AlaCC incl. uncertain,captured top 10% of length,0.002,-0.0021,0.0063
+temporal,inj,GLM + city,B: AlaCC,captured top 5% of length,0.0161,0.003,0.0301
+temporal,inj,GLM + city,B: AlaCC,captured top 10% of length,0.0188,0.0066,0.0305
+temporal,inj,GLM + city,B: AlaCC,Poisson deviance (lower is better),-510.0,-740.7,-293.3
+temporal,inj,GLM + city,C: both,captured top 5% of length,0.0128,0.0007,0.026
+temporal,inj,GLM + city,C: both,captured top 10% of length,0.0198,0.0086,0.0311
+temporal,inj,GLM + city,C: both,Poisson deviance (lower is better),-538.5,-765.4,-335.7
+temporal,inj,GLM + city,D: no volume,captured top 5% of length,0.0054,-0.0018,0.0135
+temporal,inj,GLM + city,D: no volume,captured top 10% of length,0.0017,-0.0035,0.0073
+temporal,inj,GLM + city,D: no volume,Poisson deviance (lower is better),60.6,-14.4,129.3
+temporal,inj,GLM + city,B-u: AlaCC incl. uncertain,captured top 5% of length,0.0135,0.0,0.0277
+temporal,inj,GLM + city,B-u: AlaCC incl. uncertain,captured top 10% of length,0.0184,0.0069,0.0296
+temporal,inj,GLM + city,B-u: AlaCC incl. uncertain,Poisson deviance (lower is better),-477.5,-702.0,-267.1
+spatial + temporal,ksi,EB (GBM + city),B: AlaCC,captured top 5% of length,-0.0019,-0.0196,0.0157
+spatial + temporal,ksi,EB (GBM + city),B: AlaCC,captured top 10% of length,0.0047,-0.0167,0.0257
+spatial + temporal,ksi,EB (GBM + city),C: both,captured top 5% of length,0.0047,-0.0134,0.0245
+spatial + temporal,ksi,EB (GBM + city),C: both,captured top 10% of length,0.0178,-0.0058,0.0396
+spatial + temporal,ksi,EB (GBM + city),D: no volume,captured top 5% of length,-0.0113,-0.0241,0.0026
+spatial + temporal,ksi,EB (GBM + city),D: no volume,captured top 10% of length,0.0066,-0.01,0.0211
+spatial + temporal,ksi,EB (GBM + city),B-u: AlaCC incl. uncertain,captured top 5% of length,0.0047,-0.0139,0.0228
+spatial + temporal,ksi,EB (GBM + city),B-u: AlaCC incl. uncertain,captured top 10% of length,0.0216,-0.0021,0.0451
+spatial + temporal,ksi,GBM + city,B: AlaCC,captured top 5% of length,0.0272,-0.0021,0.0573
+spatial + temporal,ksi,GBM + city,B: AlaCC,captured top 10% of length,0.0197,-0.0071,0.0466
+spatial + temporal,ksi,GBM + city,B: AlaCC,Poisson deviance (lower is better),-64.9,-133.1,3.8
+spatial + temporal,ksi,GBM + city,C: both,captured top 5% of length,0.0131,-0.0195,0.0453
+spatial + temporal,ksi,GBM + city,C: both,captured top 10% of length,0.0113,-0.0107,0.0377
+spatial + temporal,ksi,GBM + city,C: both,Poisson deviance (lower is better),-81.9,-138.0,-24.8
+spatial + temporal,ksi,GBM + city,D: no volume,captured top 5% of length,0.0113,-0.0097,0.034
+spatial + temporal,ksi,GBM + city,D: no volume,captured top 10% of length,-0.0047,-0.0248,0.0149
+spatial + temporal,ksi,GBM + city,D: no volume,Poisson deviance (lower is better),22.8,-13.8,60.7
+spatial + temporal,ksi,GBM + city,B-u: AlaCC incl. uncertain,captured top 5% of length,0.0113,-0.0199,0.0437
+spatial + temporal,ksi,GBM + city,B-u: AlaCC incl. uncertain,captured top 10% of length,0.0188,-0.0098,0.0457
+spatial + temporal,ksi,GBM + city,B-u: AlaCC incl. uncertain,Poisson deviance (lower is better),-57.6,-123.1,8.3
+spatial + temporal,ksi,EB (GLM + city),B: AlaCC,captured top 5% of length,0.0159,0.004,0.0299
+spatial + temporal,ksi,EB (GLM + city),B: AlaCC,captured top 10% of length,-0.0047,-0.0194,0.01
+spatial + temporal,ksi,EB (GLM + city),C: both,captured top 5% of length,0.0131,0.0018,0.026
+spatial + temporal,ksi,EB (GLM + city),C: both,captured top 10% of length,0.0,-0.0141,0.0129
+spatial + temporal,ksi,EB (GLM + city),D: no volume,captured top 5% of length,0.0,-0.0087,0.0091
+spatial + temporal,ksi,EB (GLM + city),D: no volume,captured top 10% of length,-0.0028,-0.0107,0.0053
+spatial + temporal,ksi,EB (GLM + city),B-u: AlaCC incl. uncertain,captured top 5% of length,0.0159,0.0032,0.0301
+spatial + temporal,ksi,EB (GLM + city),B-u: AlaCC incl. uncertain,captured top 10% of length,-0.0094,-0.027,0.0068
+spatial + temporal,ksi,GLM + city,B: AlaCC,captured top 5% of length,0.0,-0.0202,0.0213
+spatial + temporal,ksi,GLM + city,B: AlaCC,captured top 10% of length,0.0056,-0.0081,0.02
+spatial + temporal,ksi,GLM + city,B: AlaCC,Poisson deviance (lower is better),-3.9,-39.3,28.6
+spatial + temporal,ksi,GLM + city,C: both,captured top 5% of length,0.0047,-0.0158,0.0258
+spatial + temporal,ksi,GLM + city,C: both,captured top 10% of length,0.0028,-0.0118,0.0189
+spatial + temporal,ksi,GLM + city,C: both,Poisson deviance (lower is better),-8.9,-37.7,20.4
+spatial + temporal,ksi,GLM + city,D: no volume,captured top 5% of length,-0.0094,-0.0238,0.0047
+spatial + temporal,ksi,GLM + city,D: no volume,captured top 10% of length,-0.0047,-0.0138,0.0037
+spatial + temporal,ksi,GLM + city,D: no volume,Poisson deviance (lower is better),6.7,-12.5,26.3
+spatial + temporal,ksi,GLM + city,B-u: AlaCC incl. uncertain,captured top 5% of length,-0.0047,-0.0248,0.0158
+spatial + temporal,ksi,GLM + city,B-u: AlaCC incl. uncertain,captured top 10% of length,0.0038,-0.012,0.0193
+spatial + temporal,ksi,GLM + city,B-u: AlaCC incl. uncertain,Poisson deviance (lower is better),1.1,-36.6,35.9
+spatial + temporal,pb,EB (GBM + city),B: AlaCC,captured top 5% of length,-0.0042,-0.0194,0.012
+spatial + temporal,pb,EB (GBM + city),B: AlaCC,captured top 10% of length,-0.0021,-0.0206,0.0172
+spatial + temporal,pb,EB (GBM + city),C: both,captured top 5% of length,-0.0021,-0.0166,0.0137
+spatial + temporal,pb,EB (GBM + city),C: both,captured top 10% of length,-0.0042,-0.0217,0.0154
+spatial + temporal,pb,EB (GBM + city),D: no volume,captured top 5% of length,0.0042,-0.0126,0.0237
+spatial + temporal,pb,EB (GBM + city),D: no volume,captured top 10% of length,0.0021,-0.011,0.0156
+spatial + temporal,pb,EB (GBM + city),B-u: AlaCC incl. uncertain,captured top 5% of length,0.0021,-0.0168,0.0249
+spatial + temporal,pb,EB (GBM + city),B-u: AlaCC incl. uncertain,captured top 10% of length,-0.0021,-0.0192,0.0169
+spatial + temporal,pb,GBM + city,B: AlaCC,captured top 5% of length,0.0021,-0.0236,0.0278
+spatial + temporal,pb,GBM + city,B: AlaCC,captured top 10% of length,0.0,-0.0316,0.0295
+spatial + temporal,pb,GBM + city,B: AlaCC,Poisson deviance (lower is better),-20.7,-123.8,85.1
+spatial + temporal,pb,GBM + city,C: both,captured top 5% of length,0.0188,-0.0108,0.0493
+spatial + temporal,pb,GBM + city,C: both,captured top 10% of length,-0.0125,-0.0412,0.0172
+spatial + temporal,pb,GBM + city,C: both,Poisson deviance (lower is better),-8.7,-110.7,94.7
+spatial + temporal,pb,GBM + city,D: no volume,captured top 5% of length,0.0042,-0.0191,0.0275
+spatial + temporal,pb,GBM + city,D: no volume,captured top 10% of length,0.0,-0.0291,0.0312
+spatial + temporal,pb,GBM + city,D: no volume,Poisson deviance (lower is better),-22.1,-89.0,40.5
+spatial + temporal,pb,GBM + city,B-u: AlaCC incl. uncertain,captured top 5% of length,0.0,-0.0237,0.0241
+spatial + temporal,pb,GBM + city,B-u: AlaCC incl. uncertain,captured top 10% of length,0.0063,-0.0261,0.0409
+spatial + temporal,pb,GBM + city,B-u: AlaCC incl. uncertain,Poisson deviance (lower is better),-104.6,-210.2,4.1
+spatial + temporal,pb,EB (GLM + city),B: AlaCC,captured top 5% of length,0.0021,-0.0093,0.0133
+spatial + temporal,pb,EB (GLM + city),B: AlaCC,captured top 10% of length,0.0167,0.002,0.0347
+spatial + temporal,pb,EB (GLM + city),C: both,captured top 5% of length,0.0,-0.0106,0.0102
+spatial + temporal,pb,EB (GLM + city),C: both,captured top 10% of length,0.0146,-0.0023,0.0334
+spatial + temporal,pb,EB (GLM + city),D: no volume,captured top 5% of length,0.0021,-0.0086,0.0127
+spatial + temporal,pb,EB (GLM + city),D: no volume,captured top 10% of length,-0.0021,-0.01,0.0043
+spatial + temporal,pb,EB (GLM + city),B-u: AlaCC incl. uncertain,captured top 5% of length,0.0,-0.0106,0.0102
+spatial + temporal,pb,EB (GLM + city),B-u: AlaCC incl. uncertain,captured top 10% of length,0.0167,0.002,0.0347
+spatial + temporal,pb,GLM + city,B: AlaCC,captured top 5% of length,0.0042,-0.0149,0.0231
+spatial + temporal,pb,GLM + city,B: AlaCC,captured top 10% of length,-0.0021,-0.0255,0.0186
+spatial + temporal,pb,GLM + city,B: AlaCC,Poisson deviance (lower is better),24.3,-41.1,91.6
+spatial + temporal,pb,GLM + city,C: both,captured top 5% of length,0.0,-0.0169,0.0178
+spatial + temporal,pb,GLM + city,C: both,captured top 10% of length,0.0125,-0.0089,0.0333
+spatial + temporal,pb,GLM + city,C: both,Poisson deviance (lower is better),-1.3,-62.9,58.6
+spatial + temporal,pb,GLM + city,D: no volume,captured top 5% of length,0.0,-0.0152,0.0135
+spatial + temporal,pb,GLM + city,D: no volume,captured top 10% of length,-0.0021,-0.0158,0.0109
+spatial + temporal,pb,GLM + city,D: no volume,Poisson deviance (lower is better),34.6,3.4,68.7
+spatial + temporal,pb,GLM + city,B-u: AlaCC incl. uncertain,captured top 5% of length,0.0063,-0.0107,0.025
+spatial + temporal,pb,GLM + city,B-u: AlaCC incl. uncertain,captured top 10% of length,0.0021,-0.0213,0.0267
+spatial + temporal,pb,GLM + city,B-u: AlaCC incl. uncertain,Poisson deviance (lower is better),29.0,-33.2,96.1
+spatial + temporal,inj,EB (GBM + city),B: AlaCC,captured top 5% of length,-0.0016,-0.0074,0.0036
+spatial + temporal,inj,EB (GBM + city),B: AlaCC,captured top 10% of length,-0.0003,-0.005,0.0049
+spatial + temporal,inj,EB (GBM + city),C: both,captured top 5% of length,-0.0011,-0.0072,0.0049
+spatial + temporal,inj,EB (GBM + city),C: both,captured top 10% of length,0.0002,-0.0045,0.0049
+spatial + temporal,inj,EB (GBM + city),D: no volume,captured top 5% of length,0.0002,-0.0047,0.0049
+spatial + temporal,inj,EB (GBM + city),D: no volume,captured top 10% of length,0.0002,-0.0029,0.0035
+spatial + temporal,inj,EB (GBM + city),B-u: AlaCC incl. uncertain,captured top 5% of length,-0.0006,-0.0058,0.0049
+spatial + temporal,inj,EB (GBM + city),B-u: AlaCC incl. uncertain,captured top 10% of length,0.0003,-0.0046,0.0057
+spatial + temporal,inj,GBM + city,B: AlaCC,captured top 5% of length,0.0078,-0.0129,0.0289
+spatial + temporal,inj,GBM + city,B: AlaCC,captured top 10% of length,0.0247,0.0071,0.0425
+spatial + temporal,inj,GBM + city,B: AlaCC,Poisson deviance (lower is better),-804.2,-1198.0,-436.4
+spatial + temporal,inj,GBM + city,C: both,captured top 5% of length,0.0123,-0.0091,0.0341
+spatial + temporal,inj,GBM + city,C: both,captured top 10% of length,0.0284,0.0121,0.0445
+spatial + temporal,inj,GBM + city,C: both,Poisson deviance (lower is better),-1045.4,-1450.6,-698.4
+spatial + temporal,inj,GBM + city,D: no volume,captured top 5% of length,-0.0077,-0.0236,0.0072
+spatial + temporal,inj,GBM + city,D: no volume,captured top 10% of length,0.003,-0.0071,0.0141
+spatial + temporal,inj,GBM + city,D: no volume,Poisson deviance (lower is better),48.9,-145.1,238.2
+spatial + temporal,inj,GBM + city,B-u: AlaCC incl. uncertain,captured top 5% of length,0.0092,-0.0128,0.0307
+spatial + temporal,inj,GBM + city,B-u: AlaCC incl. uncertain,captured top 10% of length,0.0231,0.0069,0.0395
+spatial + temporal,inj,GBM + city,B-u: AlaCC incl. uncertain,Poisson deviance (lower is better),-870.6,-1263.3,-530.3
+spatial + temporal,inj,EB (GLM + city),B: AlaCC,captured top 5% of length,-0.0002,-0.005,0.0049
+spatial + temporal,inj,EB (GLM + city),B: AlaCC,captured top 10% of length,0.001,-0.0029,0.0053
+spatial + temporal,inj,EB (GLM + city),C: both,captured top 5% of length,0.0002,-0.004,0.0041
+spatial + temporal,inj,EB (GLM + city),C: both,captured top 10% of length,0.0007,-0.0031,0.0048
+spatial + temporal,inj,EB (GLM + city),D: no volume,captured top 5% of length,0.0001,-0.0024,0.0025
+spatial + temporal,inj,EB (GLM + city),D: no volume,captured top 10% of length,0.0003,-0.0013,0.0019
+spatial + temporal,inj,EB (GLM + city),B-u: AlaCC incl. uncertain,captured top 5% of length,-0.0007,-0.005,0.0035
+spatial + temporal,inj,EB (GLM + city),B-u: AlaCC incl. uncertain,captured top 10% of length,0.0008,-0.0032,0.0049
+spatial + temporal,inj,GLM + city,B: AlaCC,captured top 5% of length,0.0171,0.004,0.0316
+spatial + temporal,inj,GLM + city,B: AlaCC,captured top 10% of length,0.0194,0.0069,0.0324
+spatial + temporal,inj,GLM + city,B: AlaCC,Poisson deviance (lower is better),-593.1,-867.3,-344.3
+spatial + temporal,inj,GLM + city,C: both,captured top 5% of length,0.0179,0.0055,0.0325
+spatial + temporal,inj,GLM + city,C: both,captured top 10% of length,0.0207,0.0088,0.0333
+spatial + temporal,inj,GLM + city,C: both,Poisson deviance (lower is better),-597.6,-867.0,-356.5
+spatial + temporal,inj,GLM + city,D: no volume,captured top 5% of length,-0.0007,-0.0058,0.0032
+spatial + temporal,inj,GLM + city,D: no volume,captured top 10% of length,-0.0008,-0.0077,0.0056
+spatial + temporal,inj,GLM + city,D: no volume,Poisson deviance (lower is better),50.0,-37.4,128.9
+spatial + temporal,inj,GLM + city,B-u: AlaCC incl. uncertain,captured top 5% of length,0.018,0.0045,0.0333
+spatial + temporal,inj,GLM + city,B-u: AlaCC incl. uncertain,captured top 10% of length,0.0159,0.0037,0.0284
+spatial + temporal,inj,GLM + city,B-u: AlaCC incl. uncertain,Poisson deviance (lower is better),-559.6,-826.9,-301.2
