@@ -1,0 +1,20 @@
+item,n,log_corr,median_ratio_model_over_aadt,share_within_factor_2,share,value
+alacc_vol_day vs HPMS AADT,4896,0.388,0.63,0.48,,
+alacc_volt_day vs HPMS AADT,4896,0.316,0.767,0.451,,
+segments status local_unreliable,13470,,,,,
+segments status none,12715,,,,,
+segments status ok,5997,,,,,
+segments status uncertain,280,,,,,
+class living_street: share of segments with a volume (ok),26,,,,0.038,
+class primary: share of segments with a volume (ok),1068,,,,0.872,
+class primary_link: share of segments with a volume (ok),348,,,,0.305,
+class residential: share of segments with a volume (ok),23061,,,,0.012,
+class secondary: share of segments with a volume (ok),2795,,,,0.822,
+class secondary_link: share of segments with a volume (ok),514,,,,0.296,
+class tertiary: share of segments with a volume (ok),2941,,,,0.712,
+class tertiary_link: share of segments with a volume (ok),198,,,,0.369,
+class trunk: share of segments with a volume (ok),129,,,,0.31,
+class trunk_link: share of segments with a volume (ok),22,,,,0.0,
+class unclassified: share of segments with a volume (ok),1360,,,,0.013,
+matched links: median distance link midpoint to segment (m),117522,,,,,0.17
+matched links: share with name agreement (both named),112374,,,,,0.974
