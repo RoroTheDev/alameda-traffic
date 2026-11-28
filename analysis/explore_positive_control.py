@@ -62,7 +62,7 @@ def fit_both(p, vol_col, label):
     p = p.copy()
     p["vol_missing"] = p[vol_col].isna().astype(int)
     p["log_vol"] = np.log(p[vol_col].fillna(1).clip(lower=1))
-    rhs = "log_ped + log_vol + vol_missing + C(cls) + C(yr)"
+    rhs = "log_ped + log_vol + C(cls) + C(yr)" + (" + vol_missing" if p.vol_missing.nunique() > 1 else "")
     v = B.fit(p, "ped_inj", rhs, label, "log_vol")
     s = B.fit(p, "ped_inj", rhs, label, "log_ped")
     return {"volume_measure": label, "site_years": v["rows"], "sites": v["sites"], "crashes": v["crashes"],
