@@ -31,5 +31,19 @@ Uncertainty: paired bootstrap resampling streets (1,000 draws, seed 0), rankings
 B is "better" only if the main comparison's 95% interval excludes 0 in B's favour; otherwise "no clear difference", which is a fine
 result (it would mean the cheap public HPMS input is as good). Results are reported whatever they show.
 
+## Analysis 2: redo of H1's failed positive control (exploratory)
+In the confirmatory H1 run (`partb_b1_results.csv`) the positive control failed: the coefficient on log(HPMS AADT of the nearest
+segment) was 0.036 (-0.151 to 0.223), where more traffic should mean more pedestrian crashes. Count sites are intersections, so one
+nearest segment is a poor measure of the traffic there. `analysis/explore_positive_control.py` refits the H1 primary model
+(same sites, crashes, window, controls and clustered errors; `partb_b1.py` is imported, not changed) with the volume term built as:
+1. HPMS, nearest segment (reproduces the confirmatory number);
+2. AlaCC Model, nearest segment;
+3. AlaCC Model, major street: the largest street volume among segments within 30 m of the site;
+4. AlaCC Model, intersection total: the sum over streets within 30 m (per street: the largest two-way volume, or the two largest
+   one-way volumes added, for divided roads drawn as two lines);
+5. HPMS, built as in 3 and 4 (so the HPMS-vs-model difference is not just the construction).
+Reported for each: the volume coefficient (positive control passes if its 95% interval is above 0) and the pedestrian slope.
+This does not replace the confirmatory H1 result; it is reported beside it.
+
 ## Data handling
 Volumes from the AlaCC Model stay in `data/restricted/`. Only aggregate metrics are written to `analysis/results/`.
